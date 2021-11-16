@@ -27,7 +27,7 @@ const Login = () => {
 
   return (
     <div>
-      {errors && errors.map((el) => <Notification error={el} />)}
+      {errors && errors.map((i, el) => <Notification error={el} key={i} />)}
       <form>
         <label>Email</label>
         <input

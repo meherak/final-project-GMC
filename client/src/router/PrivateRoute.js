@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 
 const PrivateRoute = ({ component, ...rest }) => {
+  console.log(rest);
   const token = localStorage.getItem("token");
 
   const isAuth = useSelector((state) => state.userReducer.isAuth);

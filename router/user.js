@@ -9,13 +9,10 @@ const isAuth = require("../middlewares/isAuth");
 
 const router = express.Router();
 
-// Register==Signup ==Create account
 router.post("/register", registerValidation(), validation, Register);
-
-// Login==signin
 router.post("/login", loginValidation(), validation, login);
 
-router.get("/current", isAuth, (req, res) => {
+router.get("/me", isAuth, (req, res) => {
   res.send({ user: req.user });
 });
 

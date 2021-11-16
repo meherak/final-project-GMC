@@ -1,0 +1,7 @@
+.MyPosts {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  margin: 4% 20%;
+}

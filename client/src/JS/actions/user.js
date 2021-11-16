@@ -8,11 +8,13 @@ import {
   LOGOUT_USER,
   REGISTER_USER,
 } from "../constants/user";
+import getToken from "./getToken";
 
 export const register = (newUser, history) => async (dispatch) => {
   dispatch({ type: LOAD_USER });
   try {
     let { data } = await axios.post("/api/user/register", newUser);
+    console.log(data);
     dispatch({ type: REGISTER_USER, payload: data }); //payload:{msg,user,token}
     history.push("/profile");
   } catch (error) {
@@ -32,14 +34,9 @@ export const login = (user, history) => async (dispatch) => {
 };
 
 export const current = () => async (dispatch) => {
-  const config = {
-    headers: {
-      authorization: localStorage.getItem("token"),
-    },
-  };
   dispatch({ type: LOAD_USER });
   try {
-    let { data } = await axios.get("/api/user/current", config);
+    let { data } = await axios.get("/api/user/me", getToken());
     dispatch({ type: CURRENT_USER, payload: data });
   } catch (error) {
     dispatch({ type: FAIL_USER, payload: error.response.data });
