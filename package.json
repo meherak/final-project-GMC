@@ -1,14 +1,14 @@
 {
-  "name": "auth-july",
+  "name": "gmc-project",
   "version": "1.0.0",
-  "description": "auth",
+  "description": "final-project-MERN",
   "main": "server.js",
   "scripts": {
     "back": "nodemon server",
     "front": "cd client && npm start",
     "dev": "concurrently \"npm run front\" \"npm run back\""
   },
-  "author": "sara",
+  "author": "GMC-project",
   "license": "ISC",
   "dependencies": {
     "@mui/material": "^5.1.0",
