@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.DB_URI);
-    console.log("database is connected");
+    console.log("you are connected to DB");
   } catch (error) {
     console.log("database is not connected", error);
   }

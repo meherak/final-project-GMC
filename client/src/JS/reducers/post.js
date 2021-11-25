@@ -1,5 +1,6 @@
 import {
   ADD_POST,
+  DELETE_POST,
   FAIL_POST,
   FIND_POST,
   LOAD_POST,
@@ -7,10 +8,9 @@ import {
 } from "../constants/post";
 
 const initialState = {
-  post: null,
+  post: [],
   errors: null,
   isLoad: false,
-  isAuth: false,
 };
 
 const postReducer = (state = initialState, { type, payload }) => {
@@ -18,7 +18,7 @@ const postReducer = (state = initialState, { type, payload }) => {
     case LOAD_POST:
       return { ...state, isLoad: true };
     case ADD_POST:
-      return { ...state, isLoad: false, post: payload.post };
+      return { ...state, isLoad: false, post: [...state.post, payload.post] };
     case MY_POSTS:
       return {
         ...state,
@@ -26,7 +26,14 @@ const postReducer = (state = initialState, { type, payload }) => {
         post: payload.post,
       };
     case FIND_POST:
-      return { isLoad: false, post: payload.post };
+      return { ...state, isLoad: false, post: payload.post };
+    case DELETE_POST:
+      return {
+        ...state,
+        isLoad: false,
+        post: state.post.filter((e) => payload.post._id !== e._id),
+      };
+
     case FAIL_POST:
       return { ...state, isLoad: false, errors: payload.errors };
     default:

@@ -1,9 +1,17 @@
 const Post = require("../models/Post");
+const identify = require("./identify");
 exports.addNewPost = async (req, res) => {
-  // create a new Post
-  const newPost = new Post({ ...req.body, id_user: req.user._id });
+  console.log(req.headers["authagency"]);
+  let agencyToken = req.headers["authagency"];
+  let ID = identify(agencyToken, req.user._id);
 
+  let newPost;
   try {
+    // create a new Post
+    newPost = new Post({
+      ...req.body,
+      ...ID,
+    });
     // save it in the database
     let post = await newPost.save();
     res.send({ msg: "post is saved", post });
@@ -12,10 +20,10 @@ exports.addNewPost = async (req, res) => {
   }
 };
 exports.myPosts = async (req, res) => {
+  let ID = identify(req.headers["agence"], req.user._id);
   try {
-    const findPosts = await Post.find({ id_user: req.user._id });
-    console.log(findPosts);
-    console.log(req.headers);
+    const findPosts = await Post.find({ ...ID });
+
     res.status(200).send({ msg: "your posts are:", post: findPosts });
   } catch (error) {
     res
@@ -25,14 +33,14 @@ exports.myPosts = async (req, res) => {
 };
 exports.allPosts = async (req, res) => {
   try {
-    const allPosts = await Post.find().populate("id_user");
+    const allPosts = await Post.find().populate("id_profile id_user");
     res.send({ msg: "all posts", posts: allPosts });
   } catch (error) {
     res.send({ error });
   }
 };
 exports.editPost = async (req, res) => {
-  let id = req.user._id;
+  let id = req.body.id;
 
   try {
     let post = await Post.findOneAndUpdate(
@@ -42,16 +50,15 @@ exports.editPost = async (req, res) => {
     );
     res.status(200).send({ msg: `post updated succ`, post });
   } catch (error) {
-    console.log(error);
     res.status(400).send({ msg: "we can not find or update", error });
   }
 };
-exports.delitePost = async (req, res) => {
+exports.deletePost = async (req, res) => {
   let id = req.params.id;
   try {
-    let deleted = await Post.findByIdAndRemove(id);
-    console.log(deleted);
-    res.status(200).send({ msg: "removed post" });
+    let post = await Post.findByIdAndRemove(id);
+
+    res.status(200).send({ msg: "removed post", post });
   } catch (error) {
     console.log(error);
     res.status(400).send({ msg: "we can not remove post", error });
@@ -61,6 +68,7 @@ exports.findPost = async (req, res) => {
   let id = req.params.id;
   try {
     let post = await Post.findOne({ _id: id });
+
     res.status(200).send({ msg: "finded post", post });
   } catch (error) {
     res.status(400).send({ msg: "post not found", error });

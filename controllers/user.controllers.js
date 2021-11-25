@@ -47,6 +47,9 @@ exports.login = async (req, res) => {
   try {
     const usersProjection = {
       password: true,
+      name: true,
+      email: true,
+      phone: true,
     };
     // check email exist
     checkUser = await User.findOne({ email }, usersProjection);

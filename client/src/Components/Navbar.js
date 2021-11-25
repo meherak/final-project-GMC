@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../JS/actions/user";
 import "./Navbar.css";
+import ShowHideModal from "./Modal/ShowHideModal";
 
 export default function Navbar() {
   const isAuth = useSelector((state) => state.userReducer.isAuth);
@@ -54,14 +55,14 @@ export default function Navbar() {
                     My Posts
                   </Link>
                 </Button>
-                <Button>
+                {/* <Button>
                   <Link
                     to="/Profile"
                     style={{ color: "black", textDecoration: "none" }}
                   >
                     Profile
                   </Link>
-                </Button>
+                </Button> */}
                 <Button>
                   <Link
                     to="/addpost"
@@ -70,6 +71,7 @@ export default function Navbar() {
                     Add Post
                   </Link>
                 </Button>
+                <ShowHideModal />
               </div>
             ) : (
               <div>

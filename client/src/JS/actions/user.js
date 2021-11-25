@@ -16,7 +16,7 @@ export const register = (newUser, history) => async (dispatch) => {
     let { data } = await axios.post("/api/user/register", newUser);
     console.log(data);
     dispatch({ type: REGISTER_USER, payload: data }); //payload:{msg,user,token}
-    history.push("/profile");
+    history.push("/");
   } catch (error) {
     dispatch({ type: FAIL_USER, payload: error.response.data });
   }
@@ -27,7 +27,7 @@ export const login = (user, history) => async (dispatch) => {
   try {
     let { data } = await axios.post("/api/user/login", user); //email+password
     dispatch({ type: LOGIN_USER, payload: data }); //payload:{msg,user,token}
-    history.push("/profile");
+    history.push("/");
   } catch (error) {
     dispatch({ type: FAIL_USER, payload: error.response.data });
   }
@@ -39,7 +39,7 @@ export const current = () => async (dispatch) => {
     let { data } = await axios.get("/api/user/me", getToken());
     dispatch({ type: CURRENT_USER, payload: data });
   } catch (error) {
-    dispatch({ type: FAIL_USER, payload: error.response.data });
+    dispatch({ type: LOGOUT_USER });
   }
 };
 

@@ -4,8 +4,8 @@ const {
   myPosts,
   allPosts,
   editPost,
-  delitePost,
   findPost,
+  deletePost,
 } = require("../controllers/post.controllers");
 const isAuth = require("../middlewares/isAuth");
 
@@ -22,10 +22,10 @@ router.post("/addpost", isAuth, addNewPost);
 router.get("/myposts", isAuth, myPosts);
 //edit my post
 //@private roote
-router.put("/", isAuth, editPost);
+router.put("/editpost", isAuth, editPost);
 //delite post
 //@private route
-router.delete("/:id", isAuth, delitePost);
+router.delete("/:id", isAuth, deletePost);
 
 // route get all posts
 // @Public Route

@@ -8,8 +8,8 @@ import Login from "./Pages/Auth/Login";
 import Register from "./Pages/Auth/Register";
 import Error from "./Pages/Error";
 import Home from "./Pages/Home";
-import AddPost from "./Pages/Posts/AddPost";
 import Myposts from "./Pages/Posts/Myposts";
+import PostManager from "./Pages/Posts/PostManager";
 import Profile from "./Pages/Profile";
 import PrivateRoute from "./router/PrivateRoute";
 
@@ -28,10 +28,12 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
-        <PrivateRoute path="/profile" component={Profile} />
-        <PrivateRoute path="/addpost" component={AddPost} />
+        <PrivateRoute path="/profile/:id" component={Profile} />
+        <PrivateRoute
+          path={["/addpost", "/editpost"]}
+          component={PostManager}
+        />
         <PrivateRoute path="/myposts" component={Myposts} />
-        <PrivateRoute path="/editpost" component={AddPost} />
         <Route path="/*" component={Error} />
       </Switch>
     </div>

@@ -15,7 +15,11 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditIcon from "@mui/icons-material/Edit";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useDispatch } from "react-redux";
+import { deletePost } from "../JS/actions/post";
+import houseImj from "../assets/download.jpg";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -27,13 +31,19 @@ const ExpandMore = styled((props) => {
     duration: theme.transitions.duration.shortest,
   }),
 }));
+
 const CardPost = ({ post }) => {
   const [expanded, setExpanded] = React.useState(false);
-  console.log(post);
+
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(deletePost(post._id));
+  };
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  const history = useHistory();
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
@@ -47,28 +57,31 @@ const CardPost = ({ post }) => {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={post.title}
+        subheader={post.date}
       />
       <CardMedia
         component="img"
         height="194"
-        image="/static/images/cards/paella.jpg"
+        image={houseImj}
         alt="Paella dish"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
+          {post.description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="share">
-          <EditIcon
-            onClick={() => history.push("editpost", { id: post._id })}
-          />
+        <Link to={{ pathname: "editpost", state: { id: post._id } }}>
+          <IconButton aria-label="edit">
+            <EditIcon />
+          </IconButton>
+        </Link>
+        <IconButton onClick={handleDelete}>
+          <DeleteIcon />
         </IconButton>
         <ExpandMore
           expand={expanded}

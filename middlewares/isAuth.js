@@ -12,6 +12,7 @@ const isAuth = async (req, res, next) => {
     }
 
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    console.log(decoded);
     // {
     // _id:""
     // }
@@ -21,6 +22,7 @@ const isAuth = async (req, res, next) => {
         .send({ errors: [{ msg: "Not Authorized decoded" }] });
     }
     const findUser = await User.findById(decoded._id);
+
     if (!findUser) {
       return res
         .status(401)

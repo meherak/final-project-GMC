@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-const Profile = () => {
-  const user = useSelector((state) => state.userReducer.user);
-  const loadUser = useSelector((state) => state.userReducer.isLoad);
-  console.log(user);
+import LoginProfileModal from "../Components/Modal/LoginProfileModal";
+import useModal from "../Components/Modal/useModal";
+import jwt from "jsonwebtoken";
+import { useParams } from "react-router";
+const Profile = ({ location }) => {
+  const { isShowing, toggle } = useModal();
+  const profile = useSelector((state) => state.profileReducer.profile);
+  const loadProfile = useSelector((state) => state.profileReducer.isLoad);
+  // let id = location.state && location.state.id;
+  const { id } = useParams();
+
+  useEffect(() => {
+    let agencyToken = localStorage.getItem("agencyToken");
+    console.log(agencyToken);
+    if (agencyToken) {
+      const decoded = jwt.verify(agencyToken, "MYSECRETKEY");
+
+      if (id !== decoded._id) {
+        toggle();
+      }
+    } else {
+      toggle();
+    }
+  }, [id]);
   return (
     <div>
-      {loadUser ? (
+      <LoginProfileModal isShowing={isShowing} toggle={toggle} />
+      {loadProfile ? (
         <h3>Stana</h3>
-      ) : user ? (
+      ) : profile ? (
         <div>
-          abcd
-          <h3>{user.name}</h3>
-          <h3>{user.email}</h3>
-          <h3>{user.phone}</h3>
+          <h3>{profile.agency_name}</h3>
         </div>
       ) : null}
     </div>

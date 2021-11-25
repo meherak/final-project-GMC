@@ -28,7 +28,7 @@ const Login = () => {
   return (
     <div>
       {errors && errors.map((i, el) => <Notification error={el} key={i} />)}
-      <form>
+      <form onSubmit={handleLogin}>
         <label>Email</label>
         <input
           type="email"
@@ -49,7 +49,7 @@ const Login = () => {
           value={user.password}
         />
 
-        <input type="submit" onClick={handleLogin} />
+        <input type="submit" />
       </form>
     </div>
   );

@@ -1,0 +1,9 @@
+export const ADD_PROFILE = "ADD_PROFILE";
+export const MY_PROFILES = "MY_PROFILES";
+export const LOAD_PROFILE = "LOAD_PROFILE";
+export const FAIL_PROFILE = "FAIL_PROFILE";
+export const DELETE_PROFILE = "DELETE_PROFILE";
+export const EDIT_PROFILE = "EDIT_PROFILE";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
+export const FIND_PROFILE = "FIND_PROFILE";
+export const LOGIN_PROFILE = "LOGIN_PROFILE";
