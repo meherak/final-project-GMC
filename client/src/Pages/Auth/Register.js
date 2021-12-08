@@ -13,10 +13,15 @@ const Register = () => {
     email: "",
     password: "",
     phone: 0,
+    role: "",
   });
+
   const errors = useSelector((state) => state.userReducer.errors);
+
   const history = useHistory();
+
   const dispatch = useDispatch();
+
   const handleUser = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -65,6 +70,24 @@ const Register = () => {
           onInput={handleUser}
           value={user.phone}
         />
+        <label>
+          Particular
+          <input
+            value="particular"
+            type="radio"
+            name="role"
+            onInput={handleUser}
+          />
+        </label>
+        <label>
+          Business
+          <input
+            value="business"
+            type="radio"
+            name="role"
+            onInput={handleUser}
+          />
+        </label>
         <input type="submit" onClick={handleRegister} />
       </form>
     </>

@@ -7,6 +7,7 @@ const {
   findPost,
   deletePost,
 } = require("../controllers/post.controllers");
+const agencyIsAuth = require("../middlewares/agencyIsAuth");
 const isAuth = require("../middlewares/isAuth");
 
 const router = express.Router();

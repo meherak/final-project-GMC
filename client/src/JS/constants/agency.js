@@ -1,0 +1,11 @@
+export const ADD_AGENCY = "ADD_AGENCY";
+export const MY_AGENCYS = "MY_AGENCYS";
+export const LOAD_AGENCY = "LOAD_AGENCY";
+export const FAIL_AGENCY = "FAIL_AGENCY";
+export const DELETE_AGENCY = "DELETE_AGENCY";
+export const EDIT_AGENCY = "EDIT_AGENCY";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
+export const FIND_AGENCY = "FIND_AGENCY";
+export const LOGIN_AGENCY = "LOGIN_AGENCY";
+export const CURRENT_AGENCY = "CURRENT_AGENCY";
+export const LOGOUT_AGENCY = "LOGOUT_AGENCY";

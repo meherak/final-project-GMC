@@ -13,7 +13,8 @@ connectDB();
 app.use(express.json());
 app.use("/api/user", require("./router/user"));
 app.use("/api/post", require("./router/post"));
-app.use("/api/profile", require("./router/profile"));
+app.use("/api/agency", require("./router/agency"));
+app.use("/api/address", require("./router/address"));
 
 // ************************************
 const PORT = process.env.PORT;

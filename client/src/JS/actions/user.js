@@ -8,7 +8,7 @@ import {
   LOGOUT_USER,
   REGISTER_USER,
 } from "../constants/user";
-import getToken from "./getToken";
+import localStorageConfig from "./localStorageConfig";
 
 export const register = (newUser, history) => async (dispatch) => {
   dispatch({ type: LOAD_USER });
@@ -36,7 +36,7 @@ export const login = (user, history) => async (dispatch) => {
 export const current = () => async (dispatch) => {
   dispatch({ type: LOAD_USER });
   try {
-    let { data } = await axios.get("/api/user/me", getToken());
+    let { data } = await axios.get("/api/user/me", localStorageConfig());
     dispatch({ type: CURRENT_USER, payload: data });
   } catch (error) {
     dispatch({ type: LOGOUT_USER });

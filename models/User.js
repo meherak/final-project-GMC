@@ -19,11 +19,11 @@ const UserSchema = new Schema({
     type: Number,
     required: true,
   },
-  // role: {
-  //   type: String,
-  //   enum: ["agent", "chef", "admin"],
-
-  // },
+  role: {
+    type: String,
+    enum: ["particular", "business"],
+    required: true,
+  },
 });
 
 module.exports = User = model("user", UserSchema);

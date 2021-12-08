@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 import userReducer from "./user";
 import postReducer from "./post";
-import profileReducer from "./profile";
+import agencyReducer from "./agency";
+import addressReducer from "./address";
 const rootReducer = combineReducers({
   userReducer,
   postReducer,
-  profileReducer,
+  agencyReducer,
+  addressReducer,
 });
 export default rootReducer;

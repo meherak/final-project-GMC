@@ -16,8 +16,6 @@ const Myposts = () => {
     dispatch(myPosts());
   }, [dispatch]);
 
-  // console.log(posts);
-
   return (
     <div className="MyPosts">
       {loadPost ? (

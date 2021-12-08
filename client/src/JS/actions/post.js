@@ -8,16 +8,24 @@ import {
   LOAD_POST,
   MY_POSTS,
 } from "../constants/post";
-import getToken from "./getToken";
+import { addAddress } from "./address";
+import localStorageConfig from "./localStorageConfig";
 // import history from "../../history";
 
-export const addPost = (post, history) => async (dispatch) => {
+export const addPost = (post, address, history) => async (dispatch) => {
   post = { ...post };
   dispatch({ type: LOAD_POST });
 
   try {
-    let { data } = await axios.post("/api/post/addpost", post, getToken());
+    let { data } = await axios.post(
+      "/api/post/addpost",
+      post,
+      localStorageConfig()
+    );
     dispatch({ type: ADD_POST, payload: data });
+    let { _id } = data.post;
+    dispatch(addAddress(address, _id, "post"));
+
     console.log(data);
     history.push("/myposts");
   } catch (error) {
@@ -28,7 +36,7 @@ export const addPost = (post, history) => async (dispatch) => {
 export const myPosts = () => async (dispatch) => {
   dispatch({ type: LOAD_POST });
   try {
-    let { data } = await axios.get(`/api/post/myposts`, getToken());
+    let { data } = await axios.get(`/api/post/myposts`, localStorageConfig());
     dispatch({ type: MY_POSTS, payload: data });
     console.log(data);
   } catch (error) {
@@ -43,7 +51,7 @@ export const editPost = (editedPost, history) => async (dispatch) => {
     let { data } = await axios.put(
       "/api/post/editpost",
       editedPost,
-      getToken()
+      localStorageConfig()
     );
     dispatch(myPosts());
     history.push("/myposts");
@@ -56,7 +64,10 @@ export const editPost = (editedPost, history) => async (dispatch) => {
 export const findPost = (id) => async (dispatch) => {
   dispatch({ type: LOAD_POST });
   try {
-    let { data } = await axios.get(`/api/post/findpost/${id}`, getToken());
+    let { data } = await axios.get(
+      `/api/post/findpost/${id}`,
+      localStorageConfig()
+    );
 
     dispatch({ type: FIND_POST, payload: data });
   } catch (error) {
@@ -67,7 +78,7 @@ export const findPost = (id) => async (dispatch) => {
 export const deletePost = (id) => async (dispatch) => {
   dispatch({ type: LOAD_POST });
   try {
-    let { data } = await axios.delete(`/api/post/${id}`, getToken());
+    let { data } = await axios.delete(`/api/post/${id}`, localStorageConfig());
     dispatch({ type: DELETE_POST, payload: data });
     // dispatch(myPosts());
   } catch (error) {

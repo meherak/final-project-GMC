@@ -1,15 +1,17 @@
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 const postSchema = new Schema({
-  id_profile: {
+  poster: {
     type: Schema.Types.ObjectId,
-    ref: "profile",
-  },
-  id_user: {
-    type: Schema.Types.ObjectId,
-    ref: "user",
     required: true,
+    refPath: "onModel",
   },
+  onModel: {
+    type: String,
+    required: true,
+    enum: ["agency", "user"],
+  },
+
   title: {
     type: String,
     required: true,

@@ -50,6 +50,7 @@ exports.login = async (req, res) => {
       name: true,
       email: true,
       phone: true,
+      role: true,
     };
     // check email exist
     checkUser = await User.findOne({ email }, usersProjection);
@@ -73,8 +74,7 @@ exports.login = async (req, res) => {
     {
       _id: checkUser._id,
     },
-    process.env.SECRET_KEY,
-    { expiresIn: process.env.expiresIn }
+    process.env.SECRET_KEY
   );
 
   return res.status(200).send({ token, user: checkUser });

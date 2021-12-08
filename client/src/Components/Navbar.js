@@ -57,10 +57,10 @@ export default function Navbar() {
                 </Button>
                 {/* <Button>
                   <Link
-                    to="/Profile"
+                    to="/Agency"
                     style={{ color: "black", textDecoration: "none" }}
                   >
-                    Profile
+                    Agency
                   </Link>
                 </Button> */}
                 <Button>

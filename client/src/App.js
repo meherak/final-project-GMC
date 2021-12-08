@@ -10,16 +10,22 @@ import Error from "./Pages/Error";
 import Home from "./Pages/Home";
 import Myposts from "./Pages/Posts/Myposts";
 import PostManager from "./Pages/Posts/PostManager";
-import Profile from "./Pages/Profile";
+import Agency from "./Pages/Agency";
 import PrivateRoute from "./router/PrivateRoute";
+import { currentAgency } from "./JS/actions/agency";
 
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
-
+  const agencyId = localStorage.getItem("agencyId");
   useEffect(() => {
-    if (token) dispatch(current());
-  }, [dispatch, token]);
+    if (token) {
+      dispatch(current());
+    }
+    if (agencyId) {
+      dispatch(currentAgency());
+    }
+  }, [dispatch, token, agencyId]);
 
   return (
     <div className="App">
@@ -28,7 +34,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
-        <PrivateRoute path="/profile/:id" component={Profile} />
+        <PrivateRoute path="/agency/:id" component={Agency} />
         <PrivateRoute
           path={["/addpost", "/editpost"]}
           component={PostManager}
