@@ -1,4 +1,13 @@
+back/node_modules
+client/node_modules
+
+back/yarn.lock
+client/yarn.lock
+
+back/package-lock.json
+client/package-lock.json
+
 node_modules
-.vscode
 package-lock.json
-yarn.lock
+
+.vscode

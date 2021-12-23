@@ -1,0 +1,23 @@
+{
+  "name": "gmc-project",
+  "version": "1.0.0",
+  "description": "final-project-MERN",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server"
+  },
+  "author": "GMC-project",
+  "license": "ISC",
+  "dependencies": {
+    "@mui/material": "^5.1.0",
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.9"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.13"
+  }
+}
