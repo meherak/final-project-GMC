@@ -25,6 +25,7 @@ const Register = () => {
   const handleUser = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
+  console.log(user);
   const handleRegister = (e) => {
     e.preventDefault();
     dispatch(register(user, history));

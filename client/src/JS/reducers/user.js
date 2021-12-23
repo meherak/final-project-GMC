@@ -21,7 +21,8 @@ const userReducer = (state = initialState, { type, payload }) => {
       return { ...state, isLoad: true };
     case REGISTER_USER:
       // payload:{msg,user,token}
-      localStorage.setItem("token", payload.token);
+
+      payload.token && localStorage.setItem("token", payload.token);
       return { ...state, isLoad: false, user: payload.user, isAuth: true };
     case LOGIN_USER:
       // payload:{msg,user,token}

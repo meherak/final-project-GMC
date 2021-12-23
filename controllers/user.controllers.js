@@ -8,7 +8,7 @@ exports.Register = async (req, res) => {
   // on suppose que dans cette etape que name + email+password mawjoudin
   // 1step check if the email exist or not in the DB
 
-  const { email, password } = req.body;
+  const { email, password, name } = req.body;
 
   try {
     const findUser = await User.findOne({ email });
@@ -29,20 +29,26 @@ exports.Register = async (req, res) => {
   const saltRound = await bcrypt.genSalt(+process.env.SALT);
   const hashedPassword = bcrypt.hashSync(password, saltRound);
   newUser.password = hashedPassword;
+  // console.log(newUser);
 
   try {
     // save the user
     const { password, name, email, _id } = await newUser.save();
+
     // create the token
     const token = jwt.sign({ _id }, process.env.SECRET_KEY);
-    res.send({ user: { name, email, _id }, token });
+    res.status(200).send({ user: { name, email, _id }, token });
   } catch (error) {
-    res.send({ errors: [{ msg: "can not register the user" }] });
+    console.log(error);
+    res
+      .status(400)
+      .send({ errors: [{ msg: "can not register the user" }, error] });
+    console.log(error);
   }
 };
 
 exports.login = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, name } = req.body;
   let checkUser;
   try {
     const usersProjection = {
@@ -53,7 +59,10 @@ exports.login = async (req, res) => {
       role: true,
     };
     // check email exist
-    checkUser = await User.findOne({ email }, usersProjection);
+    checkUser = await User.findOne(
+      { $or: [{ email }, { name: email }] },
+      usersProjection
+    );
     if (!checkUser) {
       return res.status(400).send({ errors: [{ msg: "User Not found" }] });
     }

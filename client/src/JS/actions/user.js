@@ -13,7 +13,11 @@ import localStorageConfig from "./localStorageConfig";
 export const register = (newUser, history) => async (dispatch) => {
   dispatch({ type: LOAD_USER });
   try {
-    let { data } = await axios.post("/api/user/register", newUser);
+    let { data } = await axios.post(
+      "/api/user/register",
+      newUser,
+      localStorageConfig()
+    );
     console.log(data);
     dispatch({ type: REGISTER_USER, payload: data }); //payload:{msg,user,token}
     history.push("/");

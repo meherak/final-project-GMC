@@ -32,36 +32,38 @@ const Login = () => {
 
   return (
     <div>
-      {errors && errors.map((i, el) => <Notification error={el} key={i} />)}
-      <form onSubmit={handleLogin}>
-        <label>Email</label>
-        <input
-          type="email"
-          required
-          placeholder="enter your email"
-          name="email"
-          onInput={handleUser}
-          value={user.email}
-        />
-        <label>Password</label>
-        <input
-          type="password"
-          required
-          placeholder="enter your password"
-          min={6}
-          name="password"
-          onInput={handleUser}
-          value={user.password}
-        />
-        <label>
-          Agency account
+      <div>
+        {errors && errors.map((i, el) => <Notification error={el} key={i} />)}
+        <form onSubmit={handleLogin}>
+          <label>Email</label>
           <input
-            type="checkbox"
-            onChange={() => setUser({ ...user, isAgency: !user.isAgency })}
+            type="text"
+            required
+            placeholder="enter your email"
+            name="email"
+            onInput={handleUser}
+            value={user.email}
           />
-        </label>
-        <input type="submit" />
-      </form>
+          <label>Password</label>
+          <input
+            type="password"
+            required
+            placeholder="enter your password"
+            min={6}
+            name="password"
+            onInput={handleUser}
+            value={user.password}
+          />
+          <label>
+            Agency account
+            <input
+              type="checkbox"
+              onChange={() => setUser({ ...user, isAgency: !user.isAgency })}
+            />
+          </label>
+          <input type="submit" />
+        </form>
+      </div>
     </div>
   );
 };

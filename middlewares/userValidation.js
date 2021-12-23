@@ -1,7 +1,9 @@
 const { check, validationResult } = require("express-validator");
 
 exports.registerValidation = () => [
-  check("email", "email is required").isEmail(),
+  check("email", "email is required")
+    .if((value, { req }) => req.body.role !== "employer")
+    .isEmail(),
   check("password", "password length min is 6 and required")
     .isLength({ min: 6 })
     .notEmpty(),
@@ -9,7 +11,7 @@ exports.registerValidation = () => [
 ];
 
 exports.loginValidation = () => [
-  check("email", "email is required").notEmpty().isEmail(),
+  check("email", "identifiant is required").notEmpty(),
   check("password", "password length min is 6").isLength({ min: 6 }).notEmpty(),
 ];
 

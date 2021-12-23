@@ -10,6 +10,14 @@ const isAuth = require("../middlewares/isAuth");
 const router = express.Router();
 
 router.post("/register", registerValidation(), validation, Register);
+router.post(
+  "/employer/register",
+  isAuth,
+  registerValidation(),
+  validation,
+  Register
+);
+
 router.post("/login", loginValidation(), validation, login);
 
 router.get("/me", isAuth, (req, res) => {

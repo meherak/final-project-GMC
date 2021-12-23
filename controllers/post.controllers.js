@@ -49,7 +49,7 @@ exports.myPosts = async (req, res) => {
   let findPosts;
 
   let agencyId = req.headers["_id"];
-
+  console.log(agencyId);
   let agency = req.agency;
   let user = req.user;
   const ref = identify(agency, user, agencyId);

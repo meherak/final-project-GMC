@@ -71,7 +71,7 @@ export default function Navbar() {
                     Add Post
                   </Link>
                 </Button>
-                <ShowHideModal />
+                <ShowHideModal name="Account" />
               </div>
             ) : (
               <div>

@@ -22,9 +22,9 @@ const AccountModal = ({ isShowing, hide }) => {
     dispatch(current());
   }, [dispatch]);
 
-  let result;
-  if (isShowing) {
-    result = ReactDOM.createPortal(
+  return (
+    isShowing &&
+    ReactDOM.createPortal(
       <React.Fragment>
         <div className="modal-overlay-custom" />
         <div
@@ -73,11 +73,8 @@ const AccountModal = ({ isShowing, hide }) => {
         </div>
       </React.Fragment>,
       document.body
-    );
-  } else {
-    result = null;
-  }
-  return result;
+    )
+  );
 };
 
 export default AccountModal;
