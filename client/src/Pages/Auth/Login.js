@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import Notification from "../../Components/Notication";
-import { loginAgency } from "../../JS/actions/agency";
 
 import { login } from "../../JS/actions/user";
 import "./Register.css";
@@ -14,7 +13,6 @@ const Login = () => {
     password: "",
     isAgency: false,
   });
-
   const errors = useSelector((state) => state.userReducer.errors);
   const history = useHistory();
 
@@ -25,9 +23,8 @@ const Login = () => {
   };
   const handleLogin = (e) => {
     e.preventDefault();
-    user.isAgency
-      ? dispatch(loginAgency(user, history))
-      : dispatch(login(user, history));
+
+    dispatch(login(user, history));
   };
 
   return (
@@ -54,13 +51,13 @@ const Login = () => {
             onInput={handleUser}
             value={user.password}
           />
-          <label>
+          {/* <label>
             Agency account
             <input
               type="checkbox"
               onChange={() => setUser({ ...user, isAgency: !user.isAgency })}
             />
-          </label>
+          </label> */}
           <input type="submit" />
         </form>
       </div>

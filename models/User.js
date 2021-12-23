@@ -19,7 +19,7 @@ const UserSchema = new Schema({
   id_agency: {
     type: mongoose.Types.ObjectId,
     ref: "agency",
-    required: !isNotEmployer(),
+    required: isNotEmployer(),
   },
 
   name: {

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./Components/Navbar";
@@ -15,9 +15,20 @@ import PrivateRoute from "./router/PrivateRoute";
 import { currentAgency } from "./JS/actions/agency";
 
 function App() {
+  const user = useSelector((state) => state.userReducer.user);
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const agencyId = localStorage.getItem("agencyId");
+  // let id;
+  // if (user && user.id_agency) {
+  //   id = user.id_agency;
+  // }
+  // useEffect(() => {
+  //   if (id) {
+  //     localStorage.setItem("agencyId", id);
+  //   }
+  // }, [user.id_agency]);
+
   useEffect(() => {
     if (token) {
       dispatch(current());

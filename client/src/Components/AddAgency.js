@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { addAddress } from "../JS/actions/address";
 import { addAgency } from "../JS/actions/agency";
 
 const AddAgency = ({ setAddAgency }) => {
-  // const addedAgency = useSelector((state) => state.agencyReducer.agency);
-  // console.log(addedAgency);
   const [address, setAddress] = useState({
     state: "",
     city: "",
@@ -24,12 +21,7 @@ const AddAgency = ({ setAddAgency }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // let add = { ...agency, agency_address: address };
-    // console.log(add);
     dispatch(addAgency(agency, address));
-    // let agencyId = addedAgency[addedAgency.length - 1];
-    // console.log(agencyId);
-    // dispatch(addAddress(address, agencyId, "agency"));
     setAgency({
       agency_name: "",
       password: "",
@@ -41,7 +33,7 @@ const AddAgency = ({ setAddAgency }) => {
       state: "",
       city: "",
       postal_code: "",
-      // street: "",
+      street: "",
     });
     setAddAgency(false);
   };
