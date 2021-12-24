@@ -5,6 +5,7 @@ import {
   FIND_POST,
   LOAD_POST,
   MY_POSTS,
+  CLEAR_ERRORS
 } from "../constants/post";
 
 const initialState = {
@@ -33,9 +34,10 @@ const postReducer = (state = initialState, { type, payload }) => {
         isLoad: false,
         post: state.post.filter((e) => payload.post._id !== e._id),
       };
-
     case FAIL_POST:
       return { ...state, isLoad: false, errors: payload.errors };
+    case CLEAR_ERRORS:
+        return { ...state, errors: null };
     default:
       return state;
   }

@@ -7,6 +7,7 @@ import {
   FIND_POST,
   LOAD_POST,
   MY_POSTS,
+  CLEAR_ERRORS
 } from "../constants/post";
 import { addAddress } from "./address";
 import localStorageConfig from "./localStorageConfig";
@@ -84,4 +85,10 @@ export const deletePost = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({ type: FAIL_POST, payload: error.response.data });
   }
+};
+
+export const clearErrors = () => {
+  return {
+    type: CLEAR_ERRORS,
+  };
 };

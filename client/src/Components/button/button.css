@@ -1,0 +1,24 @@
+.btn {
+  border: 0;
+  height: 42px;
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+  font-size: 1.25rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-grey {
+}
+
+.btn-primary {
+  border-color: rgb(224, 0, 52) !important;
+  background-color: rgb(224, 0, 52) !important;
+}
+
+.btn-secondary {
+}
+
+.btn-radius {
+  border-radius: 20px !important;
+}
