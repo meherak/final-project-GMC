@@ -7,7 +7,7 @@ import {
   FIND_POST,
   LOAD_POST,
   MY_POSTS,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
 } from "../constants/post";
 import { addAddress } from "./address";
 import localStorageConfig from "./localStorageConfig";
@@ -28,7 +28,7 @@ export const addPost = (post, address, history) => async (dispatch) => {
     dispatch(addAddress(address, _id, "post"));
 
     console.log(data);
-    history.push("/myposts");
+    history.push("/posts");
   } catch (error) {
     dispatch({ type: FAIL_POST, payload: error.response.data });
   }
@@ -55,7 +55,7 @@ export const editPost = (editedPost, history) => async (dispatch) => {
       localStorageConfig()
     );
     dispatch(myPosts());
-    history.push("/myposts");
+    history.push("/posts");
     console.log(data);
   } catch (error) {
     dispatch({ type: FAIL_POST, payload: error.response.data });

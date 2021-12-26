@@ -1,27 +1,31 @@
 .login-wrapper {
   top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 9999;
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #eee7e7;
 }
 
 .login-content {
-  height: 100vh;
-  padding: 2rem;
-  margin: 0 auto;
+  height: 65%;
+  padding: 1.5rem;
+  margin: 10% auto;
   display: block;
   overflow-y: auto;
   max-width: 600px;
   border-radius: 8px;
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(136, 136, 136);
+  position: relative;
 }
 
 .login-header {
-  padding: 1rem 0;
+  padding: 0 0 2rem 0;
+  margin-bottom: 1rem;
+  margin-top: 0;
 }
 
 .header-wrapper {
@@ -53,22 +57,24 @@ svg {
 
 .form-container .form-control {
   /* height: 50px; */
-  margin-bottom: 1rem;
-}
-
-/* .form-container .btn {
-  border: 0;
-  height: 42px;
+  margin-top: 1rem;
   display: block;
-  margin: 0 auto;
-  min-width: 200px;
-  font-size: 1.25rem;
-  border-radius: 20px;
-  transition: all 0.3s ease-in-out;
-  background-color: rgb(224, 0, 52);
 }
 
-.btn:hover {
+.form-container .btn {
+  /* border: 0;
+  height: 42px; */
+  display: block;
+  margin-top: 1rem;
+  /* margin: 0 auto;
+  min-width: 200px;
+  font-size: 1.1rem;
+  border-radius: 7px; */
+  /* transition: all 0.3s ease-in-out; */
+  /* background-color: rgb(224, 0, 52); */
+}
+
+/* .btn:hover {
   border: 0 !important;
   background-color: rgba(224, 0, 52, 1) !important;
 } */

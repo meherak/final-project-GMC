@@ -4,11 +4,14 @@
   display: block;
   margin: 0 auto;
   width: 200px;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   transition: all 0.3s ease-in-out;
 }
 
 .btn-grey {
+  border-color: rgb(216, 212, 213) !important;
+  background-color: rgb(40, 138, 48) !important;
+  color: antiquewhite !important;
 }
 
 .btn-primary {
@@ -20,5 +23,5 @@
 }
 
 .btn-radius {
-  border-radius: 20px !important;
+  border-radius: 7px !important;
 }
