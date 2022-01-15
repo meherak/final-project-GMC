@@ -3,11 +3,13 @@ const { Schema, model } = mongoose;
 // const isNotEmployer = require("./isNotEmployer");
 const arrOfRole = ["particular", "business", "employer"];
 const roleWithEmail = ["particular", "business"];
-const isNotEmployer = () => {
-  if (roleWithEmail.indexOf(this.role) > -1) {
-    return true;
+const isEmployer = () => {
+  let role;
+  if (roleWithEmail && roleWithEmail.indexOf(this.role) > -1) {
+    return (role = { yes: false, no: true });
   }
-  return false;
+
+  return (role = { yes: true, no: false });
 };
 
 const UserSchema = new Schema({
@@ -19,7 +21,7 @@ const UserSchema = new Schema({
   id_agency: {
     type: mongoose.Types.ObjectId,
     ref: "agency",
-    required: isNotEmployer(),
+    required: isEmployer.yes,
   },
 
   name: {
@@ -30,7 +32,7 @@ const UserSchema = new Schema({
 
   email: {
     type: String,
-    required: isNotEmployer,
+    required: isEmployer.no,
     // sparse: true,
   },
   password: {

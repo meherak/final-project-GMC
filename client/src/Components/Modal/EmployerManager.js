@@ -2,13 +2,13 @@ import React from "react";
 import AddEmployer from "../AddEmployer";
 import ReactDOM from "react-dom";
 
-const EmployerManager = ({ isShowing, hide }) => {
+const EmployerManager = ({ isShowing, toggle }) => {
   return (
     isShowing &&
     ReactDOM.createPortal(
       <React.Fragment>
         <div>
-          <AddEmployer isShowing={isShowing} hide={hide} />
+          <AddEmployer isShowing={isShowing} toggle={toggle} />
         </div>
       </React.Fragment>,
       document.body

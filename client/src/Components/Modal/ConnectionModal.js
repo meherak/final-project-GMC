@@ -15,7 +15,6 @@ const ConnectionModal = ({ isShowing, toggle }) => {
 
     setIsActive({ [name]: "active" });
   };
-  console.log(isActive);
   return (
     isShowing &&
     ReactDOM.createPortal(

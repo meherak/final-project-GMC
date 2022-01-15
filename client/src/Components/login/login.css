@@ -6,7 +6,7 @@
   height: 100%;
   z-index: 9999;
   position: fixed;
-  background-color: #eee7e7;
+  background-color: var(--bs-dark);
 }
 
 .login-content {
@@ -52,7 +52,8 @@ svg {
 }
 
 .tabs-container .nav-item .nav-link.active {
-  border-bottom: 3px solid rgb(224, 0, 52);
+  /* border-bottom: 3px solid rgb(224, 0, 52); */
+  border-bottom: 3px solid seagreen;
 }
 
 .form-container .form-control {

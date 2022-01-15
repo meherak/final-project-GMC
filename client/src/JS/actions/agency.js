@@ -41,7 +41,6 @@ export const myAgencys = () => async (dispatch) => {
       `/api/agency/myagencys`,
       localStorageConfig()
     );
-    // console.log(data);
     dispatch({ type: MY_AGENCYS, payload: data });
   } catch (error) {
     dispatch({ type: FAIL_AGENCY, payload: error.response.data });

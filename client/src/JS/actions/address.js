@@ -1,20 +1,6 @@
 import axios from "axios";
-// import Myagencys from "../../Pages/Agencys/Myagencys";
-import {
-  ADD_ADDRESS,
-  FAIL_ADDRESS,
-  LOAD_ADDRESS,
-  //   CURRENT_AGENCY,
-  //   DELETE_AGENCY,
-  //   FAIL_AGENCY,
-  //   FIND_AGENCY,
-  //   LOAD_AGENCY,
-  //   LOGIN_AGENCY,
-  //   MY_AGENCYS,
-  //   LOGOUT_AGENCY,
-} from "../constants/address";
+import { ADD_ADDRESS, FAIL_ADDRESS, LOAD_ADDRESS } from "../constants/address";
 import localStorageConfig from "./localStorageConfig";
-// import history from "../../history";
 
 export const addAddress = (address, id, onModelAddress) => async (dispatch) => {
   address = { ...address, on_address: id, onModelAddress };
@@ -28,6 +14,22 @@ export const addAddress = (address, id, onModelAddress) => async (dispatch) => {
     );
 
     dispatch({ type: ADD_ADDRESS, payload: data });
+  } catch (error) {
+    dispatch({ type: FAIL_ADDRESS, payload: error.response.data });
+  }
+};
+
+export const editAddress = (editedAddress) => async (dispatch) => {
+  dispatch({ type: LOAD_ADDRESS });
+
+  try {
+    let { data } = await axios.put(
+      "/api/address/editaddress",
+      editedAddress,
+      localStorageConfig()
+    );
+
+    console.log(data);
   } catch (error) {
     dispatch({ type: FAIL_ADDRESS, payload: error.response.data });
   }

@@ -1,10 +1,8 @@
 const Address = require("../models/Address");
-const identify = require("./identify");
 exports.addAddress = async (req, res) => {
   try {
     newAddress = new Address({
       ...req.body,
-      //   ...ref,
     });
     // save it in the database
     let address = await newAddress.save();
@@ -13,7 +11,16 @@ exports.addAddress = async (req, res) => {
     res.status(403).send({ errors: [{ msg: "can not add address", error }] });
   }
 };
-exports.editAddress = async (req, rep) => {
+exports.editAddress = async (req, res) => {
+  let id = req.body._id;
   try {
-  } catch (error) {}
+    let address = await Address.findOneAndUpdate(
+      { _id: id },
+      { $set: { ...req.body } },
+      { new: true }
+    );
+    res.status(200).send({ msg: `address updated succ`, address });
+  } catch (error) {
+    res.status(400).send({ msg: "we can not find or update", error });
+  }
 };

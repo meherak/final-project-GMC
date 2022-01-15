@@ -16,10 +16,20 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
+  price: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: true,
   },
+  sType: {
+    type: String,
+    required: true,
+    enum: ["by", "rent"],
+  },
+
   date: {
     type: Date,
     default: Date.now(),

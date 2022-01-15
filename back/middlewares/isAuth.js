@@ -16,18 +16,13 @@ const isAuth = async (req, res, next) => {
   }
   try {
     const findUser = await User.findById(decoded._id);
-    // console.log(findUser);
-    const findAgency = await Agency.findById(decoded._id);
 
-    if (!findUser && !findAgency) {
+    if (!findUser) {
       return res
         .status(401)
         .send({ errors: [{ msg: "Not Authorized find user" }] });
     }
 
-    if (findAgency) {
-      req.agency = findAgency;
-    }
     if (findUser) {
       req.user = findUser;
     }

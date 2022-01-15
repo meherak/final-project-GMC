@@ -16,12 +16,12 @@ import * as React from "react";
 // import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 // import DeleteIcon from "@mui/icons-material/Delete";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deletePost } from "../../JS/actions/post";
 import houseImj from "../../assets/download.jpg";
 import "./post-card.css";
 import { useHistory } from "react-router";
-import Button from '../button/Button';
+import Button from "../button/Button";
 
 // const ExpandMore = styled((props) => {
 //   const { expand, ...other } = props;
@@ -34,10 +34,11 @@ import Button from '../button/Button';
 //   }),
 // }));
 
-
 const PostCard = ({ post }) => {
   // const [expanded, setExpanded] = React.useState(false);
-  
+  const user = useSelector((state) => state.userReducer.user);
+  const myAgencies = useSelector((state) => state.agencyReducer.agency);
+
   const history = useHistory();
 
   const dispatch = useDispatch();
@@ -51,79 +52,103 @@ const PostCard = ({ post }) => {
   // };
 
   // style={{maxWidth: '18rem'}}
+  const authorisation = () => {
+    let adminPriv;
+    let userPoster = (post && post.poster) === (user && user._id);
+    let adminPoster =
+      post &&
+      post.agencies &&
+      post.agencies[0] &&
+      post.agencies[0].id_user === (user && user._id);
+    let isMyEmployeesPosts =
+      myAgencies
+        .map((agency) => agency._id)
+        .indexOf(
+          post && post.users && post.users[0] && post.users[0].id_agency
+        ) > -1;
 
+    adminPriv = user && user.role === "business" && isMyEmployeesPosts;
+    return adminPoster || adminPriv || userPoster;
+  };
   return (
     <div className="card">
       <img src={houseImj} className="card-img-top" alt={post.title} />
       <div className="card-body">
         <h5 className="card-title">{post.title}</h5>
-        <p className="card-text">{post.description.length > 60 ? post.description.slice(0, 60) + '...' : post.description}</p>
+        <p className="card-text">
+          {post.description.length > 60
+            ? post.description.slice(0, 60) + "..."
+            : post.description}
+        </p>
       </div>
-      <div className="links">
-        <Link to={{ pathname: "editpost", state: { id: post._id } }}>
-          <Button label="Edit" color="light" clickHandler={() => history.push('/posts')} />
-        </Link>
-        <Button label="Delete" color="light" clickHandler={handleDelete} />
+
+      {authorisation() && (
+        <div className="links">
+          <Link to={{ pathname: "editpost", state: { id: post._id, post } }}>
+            <Button label="Edit" color="light" />
+          </Link>
+          <Button label="Delete" color="light" clickHandler={handleDelete} />
         </div>
+      )}
     </div>
   );
-    // <Card>
-    //   <CardHeader
-    //     avatar={
-    //       <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-    //         R
-    //       </Avatar>
-    //     }
-    //     action={
-    //       <IconButton aria-label="settings">
-    //         <MoreVertIcon />
-    //       </IconButton>
-    //     }
-    //     title={post.title}
-    //     subheader={post.date}
-    //   />
-    //   <CardMedia
-    //     component="img"
-    //     height="194"
-    //     image={houseImj}
-    //     alt="Paella dish"
-    //   />
-    //   <CardContent>
-    //     <Typography variant="body2" color="text.secondary">
-    //       {post.description}
-    //     </Typography>
-    //   </CardContent>
-    //   <CardActions disableSpacing>
-    //     <IconButton aria-label="add to favorites">
-    //       <FavoriteIcon />
-    //     </IconButton>
-    //     <Link to={{ pathname: "editpost", state: { id: post._id } }}>
-    //       <IconButton aria-label="edit">
-    //         <EditIcon />
-    //       </IconButton>
-    //     </Link>
-    //     <IconButton onClick={handleDelete}>
-    //       <DeleteIcon />
-    //     </IconButton>
-    //     <ExpandMore
-    //       expand={expanded}
-    //       onClick={handleExpandClick}
-    //       aria-expanded={expanded}
-    //       aria-label="show more"
-    //     >
-    //       <ExpandMoreIcon />
-    //     </ExpandMore>
-    //   </CardActions>
-    //   <Collapse in={expanded} timeout="auto" unmountOnExit>
-    //     <CardContent>
-    //       <Typography paragraph>Method:</Typography>
-    //       <Typography paragraph>Heat</Typography>
-    //       <Typography paragraph>Heat oil</Typography>
-    //       <Typography paragraph>Add rice</Typography>
-    //       <Typography>Set aside</Typography>
-    //     </CardContent>
-    //   </Collapse>
-    // </Card>
+  // <Card>
+  //   <CardHeader
+  //     avatar={
+  //       <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+  //         R
+  //       </Avatar>
+  //     }
+  //     action={
+  //       <IconButton aria-label="settings">
+  //         <MoreVertIcon />
+  //       </IconButton>
+  //     }
+  //     title={post.title}
+  //     subheader={post.date}
+  //   />
+  //   <CardMedia
+  //     component="img"
+  //     height="194"
+  //     image={houseImj}
+  //     alt="Paella dish"
+  //   />
+  //   <CardContent>
+  //     <Typography variant="body2" color="text.secondary">
+  //       {post.description}
+  //     </Typography>
+  //   </CardContent>
+  //   <CardActions disableSpacing>
+  //     <IconButton aria-label="add to favorites">
+  //       <FavoriteIcon />
+  //     </IconButton>
+  //     <Link to={{ pathname: "editpost", state: { id: post._id } }}>
+  //       <IconButton aria-label="edit">
+  //         <EditIcon />
+  //       </IconButton>
+  //     </Link>
+  //     <IconButton onClick={handleDelete}>
+  //       <DeleteIcon />
+  //     </IconButton>
+  //     <ExpandMore
+  //       expand={expanded}
+  //       onClick={handleExpandClick}
+  //       aria-expanded={expanded}
+  //       aria-label="show more"
+  //     >
+  //       <ExpandMoreIcon />
+  //     </ExpandMore>
+  //   </CardActions>
+  //   <Collapse in={expanded} timeout="auto" unmountOnExit>
+  //     <CardContent>
+  //       <Typography paragraph>Method:</Typography>
+  //       <Typography paragraph>Heat</Typography>
+  //       <Typography paragraph>Heat oil</Typography>
+  //       <Typography paragraph>Add rice</Typography>
+  //       <Typography>Set aside</Typography>
+  //     </CardContent>
+  //   </Collapse>
+  // </Card>
 };
 
 export default PostCard;

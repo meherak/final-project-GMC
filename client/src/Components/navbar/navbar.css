@@ -2,7 +2,7 @@
   margin: 0;
   padding-bottom: 0;
   /* margin-bottom: 1rem; */
-  background-color: var(--bs-dark) !important;
+  background-color: #1e2528 !important;
 }
 
 .navbar-brand {
@@ -20,11 +20,15 @@
   border-top: transparent;
   border-right: transparent;
   border-left: transparent;
-  border-color: seagreen;
+  border-bottom: 3rem;
+  border-color: #3a504b;
   /* margin-bottom: 0; */
 }
 .btn-navbar:hover * {
-  color: seagreen;
+  color: #0ef6be;
+}
+.btn-navbar:active * {
+  color: #3a504b;
 }
 .css-1rsw1pf {
   font-size: 1rem;
@@ -34,6 +38,9 @@
 }
 .container-fluid {
   margin: 0 2rem;
+}
+.btn-navbar > * {
+  pointer-events: none;
 }
 /* .btn {
   width: 100px;

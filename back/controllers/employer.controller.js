@@ -6,9 +6,11 @@ const mongoose = require("mongoose");
 
 exports.addEmployer = async (req, res) => {
   let agencyId = req.headers["_id"];
+  let user = req.user;
 
+  const ref = identify(user, agencyId);
   const { password, name } = req.body;
-  const ref = identify(req.agency, req.user, agencyId);
+
   console.log(ref);
 
   try {
@@ -30,7 +32,6 @@ exports.addEmployer = async (req, res) => {
   const saltRound = await bcrypt.genSalt(+process.env.SALT);
   const hashedPassword = bcrypt.hashSync(password, saltRound);
   newUser.password = hashedPassword;
-  console.log(newUser);
 
   try {
     // save the user
@@ -46,14 +47,12 @@ exports.addEmployer = async (req, res) => {
 };
 
 exports.myEmployers = async (req, res) => {
-  let findEmployers;
-
   let agencyId = req.headers["_id"];
-  console.log(agencyId);
-  let agency = req.agency;
   let user = req.user;
-  const ref = identify(agency, user, agencyId);
-  console.log(ref);
+
+  const ref = identify(user, agencyId);
+
+  let findEmployers;
 
   try {
     findEmployers = await User.aggregate([
@@ -69,7 +68,6 @@ exports.myEmployers = async (req, res) => {
         },
       },
     ]);
-    console.log(findEmployers);
     return res
       .status(200)
       .send({ msg: "your employers are:", employer: findEmployers });

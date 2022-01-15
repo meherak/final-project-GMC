@@ -5,7 +5,9 @@ import {
   FIND_POST,
   LOAD_POST,
   MY_POSTS,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
+  ALL_POSTS,
+  SEARCH_POST,
 } from "../constants/post";
 
 const initialState = {
@@ -26,8 +28,25 @@ const postReducer = (state = initialState, { type, payload }) => {
         isLoad: false,
         post: payload.post,
       };
+    case ALL_POSTS:
+      return {
+        ...state,
+        isLoad: false,
+        post: payload.posts,
+      };
+
     case FIND_POST:
-      return { ...state, isLoad: false, post: payload.post };
+      return {
+        ...state,
+        isLoad: false,
+        post: payload.post,
+      };
+    case SEARCH_POST:
+      return {
+        ...state,
+        isLoad: false,
+        post: payload.post,
+      };
     case DELETE_POST:
       return {
         ...state,
@@ -37,7 +56,7 @@ const postReducer = (state = initialState, { type, payload }) => {
     case FAIL_POST:
       return { ...state, isLoad: false, errors: payload.errors };
     case CLEAR_ERRORS:
-        return { ...state, errors: null };
+      return { ...state, errors: null };
     default:
       return state;
   }

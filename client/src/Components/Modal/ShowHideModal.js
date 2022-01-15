@@ -4,7 +4,6 @@ import ConnectionModal from "./ConnectionModal";
 import EmployerManager from "./EmployerManager";
 
 const ShowHideModal = ({ name, isShowing, toggle }) => {
-  console.log(name);
   return (
     <div>
       {/* <div className="Modal-button">

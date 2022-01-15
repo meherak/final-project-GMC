@@ -5,7 +5,7 @@ import { myAgencys } from "../JS/actions/agency";
 import AddAgency from "./AddAgency";
 // import Agency from "../Pages/Agency";
 
-const Agencys = ({ hide, setAgencyToggle, agencyToggle }) => {
+const Agencys = ({ toggle, setAgencyToggle, agencyToggle }) => {
   const [addAgency, setAddAgency] = useState(false);
 
   const agency = useSelector((state) => state.agencyReducer.agency);
@@ -31,7 +31,7 @@ const Agencys = ({ hide, setAgencyToggle, agencyToggle }) => {
                   to={{ pathname: `/agency/${e._id}`, state: String(e._id) }}
                   key={Math.random()}
                   onClick={() => {
-                    hide();
+                    toggle();
                     setAgencyToggle(false);
                   }}
                 >

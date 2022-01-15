@@ -9,7 +9,10 @@
   },
   "author": "Meher",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "country-state-city": "^3.0.1",
+    "sass": "^1.45.1"
+  },
   "devDependencies": {
     "concurrently": "^6.3.0"
   }

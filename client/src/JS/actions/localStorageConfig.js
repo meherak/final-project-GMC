@@ -5,7 +5,6 @@ const localStorageConfig = () => {
       _id: localStorage.getItem("agencyId"),
     },
   };
-  console.log(config);
 
   return config;
 };

@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import ShowHideModal from "../Components/Modal/ShowHideModal";
+import useModal from "../Components/Modal/useModal";
 import MyEmployers from "../Components/MyEmployers";
 import { currentAgency } from "../JS/actions/agency";
 import { myEmployers } from "../JS/actions/employer";
 
 const Agency = ({ location }) => {
-  // const { isShowing, toggle } = useModal();
+  const { isShowing, toggle } = useModal();
   const [showForm, setShowForm] = useState(false);
   const agencyLoggedIn = useSelector(
     (state) => state.agencyReducer.agencyLoggedIn
@@ -20,7 +21,6 @@ const Agency = ({ location }) => {
   // let id = params.id;
   const dispatch = useDispatch();
   // const _id = location.state.id;
-  console.log(location);
 
   useEffect(() => {
     localStorage.setItem("agencyId", id);
@@ -37,9 +37,15 @@ const Agency = ({ location }) => {
         <h3>Stana</h3>
       ) : agencyLoggedIn ? (
         <div>
+          agency
           <h3>{agencyLoggedIn.agency_name}</h3>
           <h3>{agencyLoggedIn.email}</h3>
-          <ShowHideModal name="Add employer" />
+          <button onClick={() => toggle()}>New employer</button>
+          <ShowHideModal
+            name="Add employer"
+            isShowing={isShowing}
+            toggle={toggle}
+          />
           <div>
             {employer.map((e, i) => (
               <MyEmployers key={i} employer={e} />

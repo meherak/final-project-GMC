@@ -6,24 +6,14 @@ const agencySchema = new Schema({
     ref: "user",
     required: true,
   },
-  // id_address: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "address",
-  //   required: true,
-  // },
   agency_name: {
     type: String,
     required: true,
   },
-  password: { type: String, required: true },
   email: { type: String, required: true },
   agency_description: {
     type: String,
     required: true,
   },
-  // agency_MF: {
-  //   type: String,
-  //   required: true,
-  // },
 });
 module.exports = Agency = model("agency", agencySchema);

@@ -6,6 +6,7 @@ const {
   editPost,
   findPost,
   deletePost,
+  searchPosts,
 } = require("../controllers/post.controllers");
 const agencyIsAuth = require("../middlewares/agencyIsAuth");
 const isAuth = require("../middlewares/isAuth");
@@ -32,6 +33,8 @@ router.delete("/:id", isAuth, deletePost);
 // @Public Route
 // Method :GET
 router.get("/findpost/:id", isAuth, findPost);
+router.get("/searchposts", searchPosts);
+
 router.get("/", allPosts);
 
 module.exports = router;

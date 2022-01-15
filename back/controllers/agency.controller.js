@@ -22,12 +22,11 @@ exports.addNewAgency = async (req, res) => {
     res.send({ msg: "agency is saved", agency });
   } catch (error) {
     res.status(403).send({ errors: [{ msg: "can not add agency", error }] });
-    // console.log(error);
   }
 };
 exports.myAgencys = async (req, res) => {
   let findAgencys;
-  if (req.user && req.user._id) {
+  if (req.user && req.user.role === "business") {
     try {
       findAgencys = await Agency.aggregate([
         { $match: { id_user: req.user._id } },
@@ -39,26 +38,12 @@ exports.myAgencys = async (req, res) => {
             as: "addresses",
           },
         },
-      ]);
-      return res
-        .status(200)
-        .send({ msg: "your agencys are:", agency: findAgencys });
-    } catch (error) {
-      res
-        .status(403)
-        .send({ errors: [{ msg: "can not get your agencys", error }] });
-    }
-  }
-  if (req.agency && req.agency.id_user) {
-    try {
-      findAgencys = await Agency.aggregate([
-        { $match: { id_user: req.agency.id_user } },
         {
           $lookup: {
-            from: "addresses",
+            from: "users",
             localField: "_id",
-            foreignField: "on_address",
-            as: "addresses",
+            foreignField: "id_agency",
+            as: "employers",
           },
         },
       ]);
@@ -71,8 +56,6 @@ exports.myAgencys = async (req, res) => {
         .send({ errors: [{ msg: "can not get your agencys", error }] });
     }
   }
-
-  // res.status(200).send({ msg: "your agencys are:", agency: findAgencys });
 };
 exports.allAgencys = async (req, res) => {
   try {

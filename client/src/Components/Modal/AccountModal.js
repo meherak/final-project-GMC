@@ -6,7 +6,7 @@ import { current } from "../../JS/actions/user";
 import Agencys from "../Agencys";
 import "./Modal.css";
 
-const AccountModal = ({ isShowing, hide }) => {
+const AccountModal = ({ isShowing, toggle }) => {
   const [agencyToggle, setAgencyToggle] = useState(false);
 
   const user = useSelector((state) => state.userReducer.user);
@@ -16,7 +16,6 @@ const AccountModal = ({ isShowing, hide }) => {
     (state) => state.agencyReducer.agencyLoggedIn
   );
 
-  // console.log(agencyLoggedIn);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(current());
@@ -42,7 +41,7 @@ const AccountModal = ({ isShowing, hide }) => {
                 className="modal-close-button-custom"
                 data-dismiss="modal-custom"
                 aria-label="Close"
-                onClick={hide}
+                onClick={toggle}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -61,7 +60,7 @@ const AccountModal = ({ isShowing, hide }) => {
                 <div>
                   {agencyToggle ? (
                     <Agencys
-                      hide={hide}
+                      toggle={toggle}
                       setAgencyToggle={setAgencyToggle}
                       agencyToggle={agencyToggle}
                     />
