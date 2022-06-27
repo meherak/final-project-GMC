@@ -6,7 +6,7 @@ const isAuth = require("../middlewares/isAuth");
 const {
   addAddress,
   editAddress,
-} = require("../controllers/Address.controller");
+} = require("../controllers/address.controller");
 
 router.post("/addaddress", isAuth, addAddress);
 router.put("/editaddress", isAuth, editAddress);
