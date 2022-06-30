@@ -36,10 +36,10 @@ import Button from "../button/Button";
 
 const PostCard = ({ post }) => {
   // const [expanded, setExpanded] = React.useState(false);
-  const user = useSelector((state) => state.userReducer.user);
-  const myAgencies = useSelector((state) => state.agencyReducer.agency);
+  // const user = useSelector((state) => state.userReducer.user);
+  // const myAgencies = useSelector((state) => state.agencyReducer.agency);
 
-  const history = useHistory();
+  // const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -52,44 +52,52 @@ const PostCard = ({ post }) => {
   // };
 
   // style={{maxWidth: '18rem'}}
-  const authorisation = () => {
-    let adminPriv;
-    let userPoster = (post && post.poster) === (user && user._id);
-    let adminPoster =
-      post &&
-      post.agencies &&
-      post.agencies[0] &&
-      post.agencies[0].id_user === (user && user._id);
-    let isMyEmployeesPosts =
-      myAgencies
-        .map((agency) => agency._id)
-        .indexOf(
-          post && post.users && post.users[0] && post.users[0].id_agency
-        ) > -1;
+  // const authorisation = () => {
+  //   let adminPriv;
+  //   let userPoster = (post && post.poster) === (user && user._id);
+  //   let adminPoster =
+  //     post &&
+  //     post.agencies &&
+  //     post.agencies[0] &&
+  //     post.agencies[0].id_user === (user && user._id);
+  //   let isMyEmployeesPosts =
+  //     myAgencies
+  //       .map((agency) => agency._id)
+  //       .indexOf(
+  //         post && post.users && post.users[0] && post.users[0].id_agency
+  //       ) > -1;
 
-    adminPriv = user && user.role === "business" && isMyEmployeesPosts;
-    return adminPoster || adminPriv || userPoster;
-  };
+  //   adminPriv = user && user.role === "business" && isMyEmployeesPosts;
+  //   return adminPoster || adminPriv || userPoster;
+  // };
   return (
     <div className="card">
       <img src={houseImj} className="card-img-top" alt={post.title} />
       <div className="card-body">
-        <h5 className="card-title">{post.title}</h5>
-        <p className="card-text">
-          {post.description.length > 60
-            ? post.description.slice(0, 60) + "..."
-            : post.description}
-        </p>
-      </div>
-
-      {authorisation() && (
+        <div className="card-info">
+          <h5 className="card-title">{post.title}</h5>
+          <p className="card-text">
+            {post.description.length > 60
+              ? post.description.slice(0, 60) + "..."
+              : post.description}
+          </p>
+        </div>
+        <div className="card-owner" style={{ margin: "8px" }}>
+          <p>
+            <span style={{ color: "chocolate" }}>Posted By: </span>
+            <strong>
+              {post.poster.name?.toUpperCase() ||
+                post.poster.agency_name?.toUpperCase()}
+            </strong>
+          </p>
+        </div>
         <div className="links">
           <Link to={{ pathname: "editpost", state: { id: post._id, post } }}>
             <Button label="Edit" color="light" />
           </Link>
           <Button label="Delete" color="light" clickHandler={handleDelete} />
         </div>
-      )}
+      </div>
     </div>
   );
   // <Card>

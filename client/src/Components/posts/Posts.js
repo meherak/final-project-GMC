@@ -5,15 +5,16 @@ import { myPosts, clearErrors } from "../../JS/actions/post";
 import PostCard from "./PostCard";
 import Loader from "../loader/Loader";
 
-const Posts = ({ posts }) => {
-  const isLoad = useSelector((state) => state.postReducer.isLoad);
-  const errors = useSelector((state) => state.postReducer.errors);
+const Posts = ({ posts, loading, error }) => {
+  console.log("props", posts);
+  // const isLoad = useSelector((state) => state.postReducer.isLoad);
+  // const errors = useSelector((state) => state.postReducer.errors);
 
   return (
     <div className="container">
-      {isLoad ? (
+      {loading ? (
         <Loader color="danger" />
-      ) : errors ? (
+      ) : error ? (
         <h1>Error</h1>
       ) : (
         <div className="posts-container">

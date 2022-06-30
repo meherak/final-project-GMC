@@ -1,0 +1,56 @@
+type Query {
+  posts: [Post]
+}
+
+union OnAddress = Agency | Post
+type Address {
+  _id: ID!
+  on_address: OnAddress!
+  onModelAddress: String
+  state: String!
+  city: String!
+  postal_code: String!
+  street: String!
+}
+
+type Agency {
+  _id: ID!
+  agency_name: String
+  agency_description: String!
+  email: String!
+  id_user: User!
+  address: Address!
+}
+
+enum UserRole {
+  particular
+  business
+  employer
+}
+type User {
+  _id: ID!
+  role: UserRole!
+  name: String!
+  email: String!
+  password: String!
+  phone: Int
+  id_agency: [Agency]
+  post: [Post]
+}
+
+union OnPost = Agency | User
+enum SearchType {
+  by
+  rent
+}
+type Post {
+  _id: ID!
+  poster: OnPost
+  onModel: String!
+  title: String!
+  price: String!
+  description: String!
+  sType: SearchType!
+  date: String
+  address: Address!
+}

@@ -1,25 +1,28 @@
 // ***
-const express = require("express");
+const { ApolloServer } = require("apollo-server");
+const fs = require("fs");
+const path = require("path");
+const Query = require("./resolvers/Query");
+const Post = require("./resolvers/Post");
+const OnPost = require("./resolvers/OnPost");
 const connectDB = require("./config/connectDB");
 require("dotenv").config();
-// *************************
-const app = express();
-// **************************************
+
 // connect with the database
 connectDB();
 
-// *********************************
-// router
-app.use(express.json());
-app.use("/api/user", require("./router/user"));
-app.use("/api/post", require("./router/post"));
-app.use("/api/agency", require("./router/agency"));
-app.use("/api/address", require("./router/address"));
-app.use("/api/employer", require("./router/employer"));
+//graphql resolvers
+let resolvers = {
+  Query,
+  Post,
+  OnPost,
+};
 
-// ************************************
-const PORT = process.env.PORT;
+// create appolo server
+const server = new ApolloServer({
+  typeDefs: fs.readFileSync(path.join(__dirname, "schema.graphql"), "utf8"),
+  resolvers,
+});
 
-app.listen(PORT, (err) =>
-  err ? console.log(err) : console.log(`you are listenning on PORT ${PORT}`)
-);
+//run the server
+server.listen().then(({ url }) => console.log(`Server is running on ${url}`));

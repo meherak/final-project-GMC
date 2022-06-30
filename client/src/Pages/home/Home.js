@@ -1,12 +1,27 @@
 import React, { useEffect, useState } from "react";
-// import AddAgency from "../../Components/AddAgency";
-// import { Country, State, City } from "country-state-city";
-// import { ICountry, IState, ICity } from "country-state-city";
-import "./home.css";
 import { useDispatch, useSelector } from "react-redux";
-// import PostCard from "../../Components/posts/PostCard";
+import { useQuery, gql } from "@apollo/client";
 import { allPosts, searchPosts } from "../../JS/actions/post";
 import Posts from "../../Components/posts/Posts";
+import "./home.css";
+
+const GET_POSTS = gql`
+  query posts {
+    posts {
+      _id
+      title
+      description
+      poster {
+        ... on Agency {
+          agency_name
+        }
+        ... on User {
+          name
+        }
+      }
+    }
+  }
+`;
 
 const Home = () => {
   const [searchInput, setSearchInput] = useState({
@@ -17,9 +32,14 @@ const Home = () => {
   const posts = useSelector((state) => state.postReducer.post);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(allPosts());
-  }, [dispatch]);
+  const { loading, error, data } = useQuery(GET_POSTS);
+  console.log("data", data);
+  console.log("loading", loading);
+  console.log("error", error);
+
+  // useEffect(() => {
+  //   dispatch(allPosts(data.posts));
+  // }, [dispatch]);
   const handleSearch = (e) => {
     e.preventDefault();
     dispatch(searchPosts(searchInput));
@@ -98,7 +118,9 @@ const Home = () => {
       <div className="last-post-container">
         <h3 className="last-post-title"> Last posts</h3>
         <div className="last-posts-body">
-          <Posts posts={posts} />
+          {!loading && (
+            <Posts posts={data.posts} loading={loading} error={error} />
+          )}
         </div>
       </div>
     </div>

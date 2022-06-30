@@ -45,10 +45,10 @@ export const myPosts = () => async (dispatch) => {
   }
 };
 
-export const allPosts = () => async (dispatch) => {
+export const allPosts = (data) => async (dispatch) => {
   dispatch({ type: LOAD_POST });
   try {
-    let { data } = await axios.get(`/api/post/`);
+    // let { data } = await axios.get(`/api/post/`);
     dispatch({ type: ALL_POSTS, payload: data });
   } catch (error) {
     dispatch({ type: FAIL_POST, payload: error.response.data });
