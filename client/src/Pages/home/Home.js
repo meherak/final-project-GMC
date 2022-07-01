@@ -29,13 +29,11 @@ const Home = () => {
     location: null,
     price: null,
   });
-  const posts = useSelector((state) => state.postReducer.post);
+  // const posts = useSelector((state) => state.postReducer.post);
   const dispatch = useDispatch();
 
   const { loading, error, data } = useQuery(GET_POSTS);
-  console.log("data", data);
-  console.log("loading", loading);
-  console.log("error", error);
+  let { posts } = data ?? [];
 
   // useEffect(() => {
   //   dispatch(allPosts(data.posts));
@@ -118,9 +116,7 @@ const Home = () => {
       <div className="last-post-container">
         <h3 className="last-post-title"> Last posts</h3>
         <div className="last-posts-body">
-          {!loading && (
-            <Posts posts={data.posts} loading={loading} error={error} />
-          )}
+          <Posts posts={posts} loading={loading} error={error} />
         </div>
       </div>
     </div>

@@ -1,18 +1,43 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import { setContext } from "@apollo/client/link/context";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import store from "./JS/store/store";
+import { AUTH_TOKEN } from "./constants";
 import "./index.css";
 // import history from "./history";
 
+const httpLink = createHttpLink({
+  uri: "http://localhost:4000",
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem(AUTH_TOKEN);
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? token : "",
+    },
+  };
+});
+
+console.log("HttpLink", authLink);
+
 const client = new ApolloClient({
-  uri: "http://localhost:4000/",
+  // uri: "http://localhost:4000/",
   cache: new InMemoryCache(),
+  link: authLink.concat(httpLink),
+  // authLink,
 });
 
 ReactDOM.render(

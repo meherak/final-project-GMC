@@ -7,6 +7,7 @@ import "../login/login.css";
 const ConnectionModal = ({ isShowing, toggle }) => {
   const [swich, setSwich] = useState("login");
   const [isActive, setIsActive] = useState({ login: "active", register: "" });
+
   const handleClose = () => {
     toggle();
   };

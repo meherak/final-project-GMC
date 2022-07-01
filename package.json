@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "final-project-MERN",
   "scripts": {
-    "back": "cd back && npm start",
-    "front": "cd client && npm start",
-    "dev": "concurrently \"npm run front\" \"npm run back\""
+    "back": "cd back && yarn start",
+    "front": "cd client && yarn start",
+    "dev": "concurrently \"yarn run front\" \"yarn run back\""
   },
   "author": "Meher",
   "license": "ISC",

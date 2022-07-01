@@ -1,38 +1,46 @@
-import "./App.css";
-import Error from "./Pages/Error";
-import { useEffect } from "react";
-import Agency from "./Pages/Agency";
-import Home from "./Pages/home/Home";
-import { current } from "./JS/actions/user";
-import Navbar from "./Components/navbar/Navbar";
-import Footer from "./Components/footer/Footer";
+import { useEffect, useState } from "react";
+import { useQuery, gql } from "@apollo/client";
 import { Switch, Route } from "react-router-dom";
-import PrivateRoute from "./router/PrivateRoute";
-import MyPosts from "./Components/posts/MyPosts";
 import { useDispatch, useSelector } from "react-redux";
 import PostManager from "./Components/posts/PostManager";
-import { currentAgency, myAgencys } from "./JS/actions/agency";
+import PrivateRoute from "./router/PrivateRoute";
+import MyPosts from "./Components/posts/MyPosts";
+import Navbar from "./Components/navbar/Navbar";
+import Footer from "./Components/footer/Footer";
+import Home from "./Pages/home/Home";
+import Agency from "./Pages/Agency";
+import Error from "./Pages/Error";
+import { current as me } from "./JS/actions/user";
+
+import "./App.css";
+
+export const CURRENT_USER = gql`
+  query Query {
+    current {
+      name
+      email
+    }
+  }
+`;
 
 function App() {
-  const user = useSelector((state) => state.userReducer.user);
+  const { data } = useQuery(CURRENT_USER);
   const dispatch = useDispatch();
-  const token = localStorage.getItem("token");
-  const agencyId = localStorage.getItem("agencyId");
+  const { current } = data ?? {};
+  useEffect(() => {
+    if (current) {
+      dispatch(me(current));
+    }
+    // if (agencyId) {
+    //   dispatch(currentAgency());
+    // }
+  }, [current, dispatch]);
 
-  useEffect(() => {
-    if (token) {
-      dispatch(current());
-    }
-    if (agencyId) {
-      dispatch(currentAgency());
-    }
-  }, [dispatch, token, agencyId]);
-  console.log(user);
-  useEffect(() => {
-    if (user && user.role === "business") {
-      dispatch(myAgencys());
-    }
-  }, [dispatch, user]);
+  // useEffect(() => {
+  //   if (user && user.role === "business") {
+  //     dispatch(myAgencys());
+  //   }
+  // }, [dispatch, user]);
   return (
     <div className="App">
       <Navbar />

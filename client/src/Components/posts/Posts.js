@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { myPosts, clearErrors } from "../../JS/actions/post";
 import PostCard from "./PostCard";
 import Loader from "../loader/Loader";
+import { myPosts, clearErrors } from "../../JS/actions/post";
 
 const Posts = ({ posts, loading, error }) => {
-  console.log("props", posts);
+  console.log("loading", loading);
   // const isLoad = useSelector((state) => state.postReducer.isLoad);
   // const errors = useSelector((state) => state.postReducer.errors);
 

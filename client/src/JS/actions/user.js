@@ -9,6 +9,7 @@ import {
   REGISTER_USER,
 } from "../constants/user";
 import localStorageConfig from "./localStorageConfig";
+import { useHistory } from "react-router-dom";
 
 export const register = (newUser, history) => async (dispatch) => {
   dispatch({ type: LOAD_USER });
@@ -31,23 +32,23 @@ export const login = (user, history) => async (dispatch) => {
   try {
     let { data } = await axios.post("/api/user/login", user); //email+password
     dispatch({ type: LOGIN_USER, payload: data }); //payload:{msg,user,token}
-    history.push("/");
   } catch (error) {
     dispatch({ type: FAIL_USER, payload: error.response.data });
   }
 };
 
-export const current = () => async (dispatch) => {
+export const current = (user) => async (dispatch) => {
   dispatch({ type: LOAD_USER });
   try {
-    let { data } = await axios.get("/api/user/me", localStorageConfig());
-    dispatch({ type: CURRENT_USER, payload: data });
+    // let { data } = await axios.get("/api/user/me", localStorageConfig());
+    dispatch({ type: CURRENT_USER, payload: user });
   } catch (error) {
     dispatch({ type: LOGOUT_USER });
   }
 };
 
 export const logout = () => {
+
   return {
     type: LOGOUT_USER,
   };

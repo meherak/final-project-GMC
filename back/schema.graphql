@@ -1,5 +1,21 @@
 type Query {
   posts: [Post]
+  current: User
+}
+
+type Mutation {
+  singUp(
+    email: String
+    name: String
+    password: String
+    phone: Float
+    role: UserRole
+  ): AuthPayload
+}
+
+type AuthPayload {
+  token: String
+  user: User
 }
 
 union OnAddress = Agency | Post

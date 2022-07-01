@@ -25,6 +25,6 @@
   width: 100%;
   /* display: flex; */
   border-radius: 0;
-  /* justify-content: center; */
-  /* border: 1px solid #d1d1d1; */
+  justify-content: center;
+  border: 1px solid #d1d1d1;
 }

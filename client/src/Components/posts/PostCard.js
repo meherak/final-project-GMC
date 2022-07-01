@@ -1,4 +1,7 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 // import { styled } from "@mui/material/styles";
 // import Card from "@mui/material/Card";
 // import CardHeader from "@mui/material/CardHeader";
@@ -14,14 +17,11 @@ import * as React from "react";
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 // import MoreVertIcon from "@mui/icons-material/MoreVert";
 // import EditIcon from "@mui/icons-material/Edit";
-import { Link } from "react-router-dom";
 // import DeleteIcon from "@mui/icons-material/Delete";
-import { useDispatch, useSelector } from "react-redux";
 import { deletePost } from "../../JS/actions/post";
 import houseImj from "../../assets/download.jpg";
-import "./post-card.css";
-import { useHistory } from "react-router";
 import Button from "../button/Button";
+import "./post-card.css";
 
 // const ExpandMore = styled((props) => {
 //   const { expand, ...other } = props;
@@ -95,7 +95,8 @@ const PostCard = ({ post }) => {
           <Link to={{ pathname: "editpost", state: { id: post._id, post } }}>
             <Button label="Edit" color="light" />
           </Link>
-          <Button label="Delete" color="light" clickHandler={handleDelete} />
+
+          <Button label="Delete" clickHandler={handleDelete} />
         </div>
       </div>
     </div>

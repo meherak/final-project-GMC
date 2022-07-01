@@ -7,6 +7,7 @@ import {
   LOGOUT_USER,
   REGISTER_USER,
 } from "../constants/user";
+import { AUTH_TOKEN } from "../../constants";
 
 const initialState = {
   user: null,
@@ -33,7 +34,7 @@ const userReducer = (state = initialState, { type, payload }) => {
     case FAIL_USER:
       return { ...state, errors: payload.errors, isLoad: false };
     case LOGOUT_USER:
-      localStorage.removeItem("token");
+      localStorage.removeItem(AUTH_TOKEN);
       localStorage.removeItem("agencyId");
 
       return {
