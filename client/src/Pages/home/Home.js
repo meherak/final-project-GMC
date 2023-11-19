@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-// import AddAgency from "../../Components/AddAgency";
-// import { Country, State, City } from "country-state-city";
-// import { ICountry, IState, ICity } from "country-state-city";
 import "./home.css";
 import { useDispatch, useSelector } from "react-redux";
-// import PostCard from "../../Components/posts/PostCard";
 import { allPosts, searchPosts } from "../../JS/actions/post";
-import Posts from "../../Components/posts/Posts";
+import Posts from "../../Components/postList/PostsList";
 
 const Home = () => {
   const [searchInput, setSearchInput] = useState({
@@ -27,45 +23,46 @@ const Home = () => {
   return (
     <div className="home-container">
       <div className="search-container">
-        {/* <img alt="home search" src={searchImg}></img> */}
         <div className="search-header">
           <h1>What is your project ? </h1>
         </div>
         <div className="search-body">
           <form className="serach-form" onSubmit={(e) => handleSearch(e)}>
-            <label>
-              Rent
-              <input
-                value="rent"
-                type="radio"
-                name="sType"
-                onChange={(e) =>
-                  setSearchInput({
-                    ...searchInput,
-                    [e.target.name]: e.target.value,
-                  })
-                }
-              />
-            </label>
-            <label>
-              By
-              <input
-                value="by"
-                type="radio"
-                name="sType"
-                onChange={(e) =>
-                  setSearchInput({
-                    ...searchInput,
-                    [e.target.name]: e.target.value,
-                  })
-                }
-              />
-            </label>
-            <label>
+            <div className="search-content">
+              <div className="flex">
+                <label>Rent</label>
+                <input
+                  value="rent"
+                  type="radio"
+                  name="sType"
+                  onChange={(e) =>
+                    setSearchInput({
+                      ...searchInput,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                />
+              </div>
+              <div className="flex">
+                <label>By</label>
+                <input
+                  value="by"
+                  type="radio"
+                  name="sType"
+                  onChange={(e) =>
+                    setSearchInput({
+                      ...searchInput,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                />
+              </div>
+
               <input
                 type="text"
                 name="location"
                 placeholder="Where you want search?"
+                className="form-control search-input"
                 onChange={(e) =>
                   setSearchInput({
                     ...searchInput,
@@ -73,12 +70,11 @@ const Home = () => {
                   })
                 }
               />
-            </label>
-            <label>
               <input
                 type="text"
                 name="price"
                 placeholder="Max price $"
+                className="form-control search-input"
                 onChange={(e) =>
                   setSearchInput({
                     ...searchInput,
@@ -86,8 +82,7 @@ const Home = () => {
                   })
                 }
               />
-            </label>
-
+            </div>
             <div>
               <button type="submit">Search</button>
             </div>

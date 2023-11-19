@@ -6,22 +6,6 @@ import EmployerManager from "./EmployerManager";
 const ShowHideModal = ({ name, isShowing, toggle }) => {
   return (
     <div>
-      {/* <div className="Modal-button">
-        <i className="fas fa-sign-in-alt" onClick={toggle}> */}
-      {/* <button
-            className="nav-link active"
-            aria-current="page"
-            onClick={toggle}
-          > */}
-      {/* {name} */}
-      {/* </button> */}
-      {/* </i> */}
-      {/* <i className="fas fa-sign-in-alt">
-          <button className="nav-link active" aria-current="page" href="/login">
-            Connection
-          </button>
-        </i> */}
-      {/* </div> */}
       <div>
         {name === "Account" ? (
           <AccountModal isShowing={isShowing} toggle={toggle} />

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { currentAgency } from "../../JS/actions/agency";
 import { current } from "../../JS/actions/user";
 import Agencys from "../Agencys";
 import "./Modal.css";
@@ -11,10 +10,6 @@ const AccountModal = ({ isShowing, toggle }) => {
 
   const user = useSelector((state) => state.userReducer.user);
   const loadUser = useSelector((state) => state.userReducer.isLoad);
-  const loadAgency = useSelector((state) => state.agencyReducer.agencyLoggedIn);
-  const agencyLoggedIn = useSelector(
-    (state) => state.agencyReducer.agencyLoggedIn
-  );
 
   const dispatch = useDispatch();
   useEffect(() => {

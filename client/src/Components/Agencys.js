@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { myAgencys } from "../JS/actions/agency";
 import AddAgency from "./AddAgency";
-// import Agency from "../Pages/Agency";
 
 const Agencys = ({ toggle, setAgencyToggle, agencyToggle }) => {
   const [addAgency, setAddAgency] = useState(false);

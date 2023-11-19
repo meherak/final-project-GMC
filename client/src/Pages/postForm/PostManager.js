@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+
 import {
   addPost,
   editPost,
   findPost,
   clearErrors,
 } from "../../JS/actions/post";
-import Loader from "../loader/Loader";
-import Button from "../button/Button";
+import Loader from "../../Components/loader/Loader";
+import Button from "../../Components/button/Button";
 
 const PostManager = ({ location }) => {
   const [address, setAddress] = useState({
@@ -141,13 +142,6 @@ const PostManager = ({ location }) => {
                 <label htmlFor="description" className="form-label">
                   Description :
                 </label>
-                {/* <input
-                    type="text"
-                    className="form-control"
-                    name="description"
-                    value={post && post.description}
-                    onChange={handleChange}
-                  /> */}
                 <textarea
                   className="form-control"
                   id="description"
@@ -235,7 +229,6 @@ const PostManager = ({ location }) => {
                 type="submit"
                 radius="true"
               />
-              {/* <button type="submit" className="btn btn-primary">Submit</button> */}
             </form>
           </div>
         </div>

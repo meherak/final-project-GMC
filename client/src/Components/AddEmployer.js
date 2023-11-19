@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { addEmployer } from "../JS/actions/employer";
-import { register } from "../JS/actions/user";
 import "./login/login.css";
 
 const AddEmployer = ({ isShowing, toggle }) => {
@@ -11,10 +9,6 @@ const AddEmployer = ({ isShowing, toggle }) => {
     password: "",
     phone: 0,
   });
-
-  //   const errors = useSelector((state) => state.userReducer.errors);
-
-  const history = useHistory();
 
   const dispatch = useDispatch();
 

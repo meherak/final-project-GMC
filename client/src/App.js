@@ -1,3 +1,6 @@
+import { useDispatch, useSelector } from "react-redux";
+import { Switch, Route } from "react-router-dom";
+
 import "./App.css";
 import Error from "./Pages/Error";
 import { useEffect } from "react";
@@ -6,11 +9,9 @@ import Home from "./Pages/home/Home";
 import { current } from "./JS/actions/user";
 import Navbar from "./Components/navbar/Navbar";
 import Footer from "./Components/footer/Footer";
-import { Switch, Route } from "react-router-dom";
 import PrivateRoute from "./router/PrivateRoute";
-import MyPosts from "./Components/posts/MyPosts";
-import { useDispatch, useSelector } from "react-redux";
-import PostManager from "./Components/posts/PostManager";
+import MyPosts from "./Pages/myPosts/MyPosts";
+import PostForm from "./Pages/postForm/PostManager";
 import { currentAgency, myAgencys } from "./JS/actions/agency";
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
         <PrivateRoute path="/agency/:id" component={Agency} />
         <PrivateRoute
           path={["/addpost", "/editpost"]}
-          component={PostManager}
+          component={PostForm}
         />
         <PrivateRoute path="/posts" component={MyPosts} />
         <Route path="/*" component={Error} />

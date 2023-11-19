@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { clearErrors, myPosts } from "../../JS/actions/post";
-import Posts from "./Posts";
+import PostsList from "../../Components/postList/PostsList";
 
 const MyPosts = () => {
   const posts = useSelector((state) => state.postReducer.post);
@@ -15,7 +16,7 @@ const MyPosts = () => {
 
   return (
     <div className="myposts-container">
-      <Posts posts={posts} />
+      <PostsList posts={posts} />
     </div>
   );
 };

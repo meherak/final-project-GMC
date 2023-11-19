@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+
 import ShowHideModal from "../Components/Modal/ShowHideModal";
 import useModal from "../Components/Modal/useModal";
 import MyEmployers from "../Components/MyEmployers";
@@ -9,18 +10,14 @@ import { myEmployers } from "../JS/actions/employer";
 
 const Agency = ({ location }) => {
   const { isShowing, toggle } = useModal();
-  const [showForm, setShowForm] = useState(false);
   const agencyLoggedIn = useSelector(
     (state) => state.agencyReducer.agencyLoggedIn
   );
   const loadAgency = useSelector((state) => state.agencyReducer.isLoad);
-  // const agency = useSelector((state) => state.agencyReducer.agency);
   const employer = useSelector((state) => state.employerReducer.employer);
   const params = useParams();
   const id = params.id;
-  // let id = params.id;
   const dispatch = useDispatch();
-  // const _id = location.state.id;
 
   useEffect(() => {
     localStorage.setItem("agencyId", id);
@@ -32,7 +29,6 @@ const Agency = ({ location }) => {
 
   return (
     <div>
-      {/* <LoginAgencyModal isShowing={isShowing} toggle={toggle} /> */}
       {loadAgency ? (
         <h3>Stana</h3>
       ) : agencyLoggedIn ? (

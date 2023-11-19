@@ -15,7 +15,6 @@ const Notification = ({ error }) => {
     <div>
       {show && (
         <div>
-          {" "}
           {toast.error(error.msg)}
           <ToastContainer
             position="bottom-right"

@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 
-import { myPosts, clearErrors } from "../../JS/actions/post";
-import PostCard from "./PostCard";
+import PostCard from "../postCard/PostCard";
 import Loader from "../loader/Loader";
 
-const Posts = ({ posts }) => {
+const PostsList = ({ posts }) => {
   const isLoad = useSelector((state) => state.postReducer.isLoad);
   const errors = useSelector((state) => state.postReducer.errors);
 
@@ -25,4 +24,4 @@ const Posts = ({ posts }) => {
   );
 };
 
-export default Posts;
+export default PostsList;
