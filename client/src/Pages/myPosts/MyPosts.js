@@ -6,6 +6,7 @@ import PostsList from "../../Components/postList/PostsList";
 
 const MyPosts = () => {
   const posts = useSelector((state) => state.postReducer.post);
+  console.log(posts,'posts');
 
   const dispatch = useDispatch();
 

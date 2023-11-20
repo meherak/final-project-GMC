@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
+import React from "react";
 
 import "./App.css";
 import Error from "./Pages/Error";

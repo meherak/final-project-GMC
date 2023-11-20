@@ -6,6 +6,8 @@ import { deletePost } from "../../JS/actions/post";
 import houseImj from "../../assets/download.jpg";
 import "./post-card.css";
 import Button from "../button/Button";
+import { useNavigate } from 'react-router-dom';
+import Details from "../postDetails/PostDetails";
 
 const PostCard = ({ post }) => {
   const user = useSelector((state) => state.userReducer.user);
@@ -15,6 +17,11 @@ const PostCard = ({ post }) => {
 
   const handleDelete = () => {
     dispatch(deletePost(post._id));
+  };
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/postdetails');
   };
 
   const authorisation = () => {
@@ -36,7 +43,7 @@ const PostCard = ({ post }) => {
     return adminPoster || adminPriv || userPoster;
   };
   return (
-    <div className="card">
+    <div className="card" >
       <img src={houseImj} className="card-img-top" alt={post.title} />
       <div className="card-body">
         <h5 className="card-title">{post.title}</h5>
@@ -45,7 +52,9 @@ const PostCard = ({ post }) => {
             ? post.description.slice(0, 60) + "..."
             : post.description}
         </p>
+       
       </div>
+      <button className="view details" onClick={handleClick}>view details</button>
 
       {authorisation() && (
         <div className="links">

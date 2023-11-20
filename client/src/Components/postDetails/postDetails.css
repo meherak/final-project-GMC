@@ -1,0 +1,195 @@
+.imageannounce {
+    display: flex;
+  flex-shrink: 0;
+  width: 144px;
+  height: 141px;
+  border-radius: 3px;
+}
+
+.contactezlagence {
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+  background-color: rgba(217, 217, 217, 1);
+  border-radius: 6px;
+  width: 142px;
+  height: 100px;
+  }
+
+  .adresse {
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+  background-color: rgba(217, 217, 217, 1);
+  border-radius: 4px;
+  width: 495px;
+  height: 27px;
+  }
+
+  .prix {
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 4px;
+    width: 130px;
+    height: 27px;
+  }
+  .adresse {
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 4px;
+    width: 495px;
+    height: 27px;
+  }
+
+  .nombredeschambres {
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 4px;
+    width: 81px;
+    height: 43px;
+  }
+
+  .espace  {
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 4px;
+    width: 81px;
+    height: 43px;
+  }
+
+  .equipement {
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 4px;
+    width: 81px;
+    height: 43px;
+  }
+
+  .annoncesimilaire{
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+  background-color: rgba(217, 217, 217, 1);
+  border-radius: 6px;
+  width: 254px;
+  height: 31px;
+  }
+
+  .imagedannonce1 {
+    display: block;
+    width: 144px;
+    height: 141px;
+    border-radius: 3px;
+    margin: 0 auto;
+  }
+
+  .adressedannonce1 {
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 2px;
+    width: 144px;
+    height: 20px;
+  }
+
+  .prixdannonce1 {
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 2px;
+    width: 144px;
+    height: 16px;
+  }
+  .imagedannonce2 {
+    display: block;
+    width: 144px;
+    height: 141px;
+    border-radius: 3px;
+    margin: 0 auto;
+  }
+
+  .adressedannonce2 {
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 2px;
+    width: 144px;
+    height: 20px;
+  }
+
+  .prixdannonce2 {
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 2px;
+    width: 144px;
+    height: 16px;
+  }
+  .imagedannonce3 {
+    display: block;
+    width: 144px;
+    height: 141px;
+    border-radius: 3px;
+    margin: 0 auto;
+  }
+
+  .adressedannonce3 {
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 2px;
+    width: 144px;
+    height: 20px;
+  }
+
+  .prixdannonce3 {
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 2px;
+    width: 144px;
+    height: 16px;
+  }
+  .imagedannonce4 {
+    display: block;
+    width: 144px;
+    height: 141px;
+    border-radius: 3px;
+    margin: 0 auto;
+  }
+
+  .adressedannonce4 {
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 2px;
+    width: 144px;
+    height: 20px;
+  }
+
+  .prixdannonce4 {
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 2px;
+    width: 144px;
+    height: 16px;
+  }

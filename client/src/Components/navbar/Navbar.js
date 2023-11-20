@@ -31,7 +31,7 @@ export default function Navbar() {
 
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-          GO MY CODE
+          SE LOGER
         </a>
         {isAuth ? (
           <div className="navbar-nav d-flex flex-row">
