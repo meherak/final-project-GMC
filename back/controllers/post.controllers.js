@@ -15,8 +15,7 @@ exports.addNewPost = async (req, res) => {
   });
 
   try {
-    // create a new Post
-    // save it in the database
+   
     let post = await newPost.save();
     res.send({ msg: "post is saved", post });
   } catch (error) {
