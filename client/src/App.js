@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import React from "react";
 
 import "./App.css";
@@ -14,7 +14,7 @@ import PrivateRoute from "./router/PrivateRoute";
 import MyPosts from "./Pages/myPosts/MyPosts";
 import PostForm from "./Pages/postForm/PostManager";
 import { currentAgency, myAgencys } from "./JS/actions/agency";
-import ScrollToTopButton from "./Components/scrollButton/ScrollButton";
+// import ScrollToTopButton from "./Components/scrollButton/ScrollButton";
 
 function App() {
   const user = useSelector((state) => state.userReducer.user);
@@ -39,17 +39,48 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <ScrollToTopButton />
-        <PrivateRoute path="/agency/:id" component={Agency} />
-        <PrivateRoute
-          path={["/addpost", "/editpost"]}
-          component={PostForm}
+      <Routes>
+        <Route exact path="/" element={Home} />
+
+        <Route
+          path="/agency/:id"
+          element={
+            <PrivateRoute>
+              <Agency />
+            </PrivateRoute>
+          }
         />
-        <PrivateRoute path="/posts" component={MyPosts} />
-        <Route path="/*" component={Error} />
-      </Switch>
+
+        <Route
+          path="/addpost"
+          element={
+            <PrivateRoute>
+              <PostForm />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/editpost"
+          element={
+            <PrivateRoute>
+              <PostForm />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/posts"
+          element={
+            <PrivateRoute>
+              <MyPosts />
+            </PrivateRoute>
+          }
+        />
+        {/* <ScrollToTopButton /> */}
+
+        <Route path="/*" element={Error} />
+      </Routes>
 
       <Footer />
     </div>

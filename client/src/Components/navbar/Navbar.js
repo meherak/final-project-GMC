@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../JS/actions/user";
 
@@ -11,7 +11,7 @@ export default function Navbar() {
   const [modalShouldShow, setModalShouldShow] = useState("");
   const isAuth = useSelector((state) => state.userReducer.isAuth);
   const { isShowing, toggle } = useModal();
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logout());
@@ -38,7 +38,7 @@ export default function Navbar() {
             <button
               className="nav-item mr-2 btn-navbar"
               label="New Post"
-              onClick={() => history.push("/addpost")}
+              onClick={() => navigate("/addpost")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +57,7 @@ export default function Navbar() {
               className="nav-item mr-2 btn-navbar"
               label="My Posts"
               // color="light"
-              onClick={() => history.push("/posts")}
+              onClick={() => navigate("/posts")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

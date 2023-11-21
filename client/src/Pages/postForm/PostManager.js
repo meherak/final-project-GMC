@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import {
   addPost,
@@ -11,7 +11,7 @@ import {
 import Loader from "../../Components/loader/Loader";
 import Button from "../../Components/button/Button";
 
-const PostManager = ({ location }) => {
+const PostForm = () => {
   const [address, setAddress] = useState({
     city: "",
     state: "",
@@ -27,6 +27,7 @@ const PostManager = ({ location }) => {
     addresses: { city: "", state: "", street: "", postal_code: "" },
   });
 
+  const location = useLocation();
   const isLoad = useSelector((state) => state.postReducer.isLoad);
   const errors = useSelector((state) => state.postReducer.errors);
   const getPost = useSelector((state) => state.postReducer.post);
@@ -38,7 +39,7 @@ const PostManager = ({ location }) => {
       state.postReducer.post.addresses
   );
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (location.state && location.state.id) {
@@ -70,9 +71,9 @@ const PostManager = ({ location }) => {
       let editedpost = { ...post, id: location.state.id };
       let editedAddress = { ...address };
 
-      dispatch(editPost(editedpost, editedAddress, history));
+      dispatch(editPost(editedpost, editedAddress, navigate));
     } else if (location.pathname === "/addpost") {
-      dispatch(addPost(post, address, history));
+      dispatch(addPost(post, address, navigate));
     }
   };
   const handleChange = (e) => {
@@ -237,4 +238,4 @@ const PostManager = ({ location }) => {
   );
 };
 
-export default PostManager;
+export default PostForm;

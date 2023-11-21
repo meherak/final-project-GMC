@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 import { register } from "../../JS/actions/user";
-import Notification from "../Notication";
 
 const Register = ({ toggle }) => {
   const [user, setUser] = useState({
@@ -17,7 +16,7 @@ const Register = ({ toggle }) => {
 
   const errors = useSelector((state) => state.userReducer.errors);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -27,29 +26,11 @@ const Register = ({ toggle }) => {
   console.log(user);
   const handleRegister = (e) => {
     e.preventDefault();
-    dispatch(register(user, history));
+    dispatch(register(user, navigate));
     toggle();
   };
 
   return (
-    // <div className="login-wrapper">
-    //   <div className="login-content">
-    //     <div className="login-header">
-    //       <div className="header-wrapper" onClick={() => history.push('/')}>
-    //         <svg viewBox="0 0 512 512"><path d="M280.5 256L495.9 40.5c6.7-6.7 6.7-17.7 0-24.4s-17.7-6.7-24.4 0L256 231.6 40.5 16.1c-6.7-6.7-17.7-6.7-24.4 0s-6.7 17.7 0 24.4L231.6 256 16.1 471.5c-6.7 6.7-6.7 17.7 0 24.4s17.7 6.7 24.4 0L256 280.5 471.5 496c6.7 6.7 17.7 6.7 24.4 0s6.7-17.7 0-24.4L280.5 256z"></path></svg>
-    //       </div>
-    //     </div>
-    //     <div className="login-body">
-    //       <div className="tabs-container">
-    //         <ul className="nav nav-pills nav-fill">
-    //           <li className="nav-item">
-    //             <a className="nav-link" aria-current="page" href="/login">Login</a>
-    //           </li>
-    //           <li className="nav-item">
-    //             <a className="nav-link active" href="/register">Register</a>
-    //           </li>
-    //         </ul>
-    //       </div>
     <div className="form-container">
       <form onSubmit={handleRegister}>
         <input
@@ -114,84 +95,10 @@ const Register = ({ toggle }) => {
             </label>
           </div>
         </div>
-        {/* <input
-                value="particular"
-                type="radio"
-                name="role"
-                onInput={handleUser}
-              />
-              <input
-                value="business"
-                type="radio"
-                name="role"
-                onInput={handleUser}
-              /> */}
+
         <input type="submit" className="btn btn-primary" value="Register" />
       </form>
     </div>
-    //     </div>
-    //   </div>
-    // </div>
-    // <>
-    //   {errors && errors.map((el) => <Notification error={el} />)}
-    //   <form>
-    //     <label>Name</label>
-    //     <input
-    //       type="text"
-    //       placeholder="enter your name"
-    //       required
-    //       name="name"
-    //       onInput={handleUser}
-    //       value={user.name}
-    //     />
-    //     <label>Email</label>
-    //     <input
-    //       type="email"
-    //       required
-    //       placeholder="enter your email"
-    //       name="email"
-    //       onInput={handleUser}
-    //       value={user.email}
-    //     />
-    //     <label>Password</label>
-    //     <input
-    //       type="password"
-    //       required
-    //       placeholder="enter your password"
-    //       min={6}
-    //       name="password"
-    //       onInput={handleUser}
-    //       value={user.password}
-    //     />
-    //     <label>Phone</label>
-    //     <input
-    //       type="number"
-    //       placeholder="enter your phone number"
-    //       name="phone"
-    //       onInput={handleUser}
-    //       value={user.phone}
-    //     />
-    //     <label>
-    //       Particular
-    //       <input
-    //         value="particular"
-    //         type="radio"
-    //         name="role"
-    //         onInput={handleUser}
-    //       />
-    //     </label>
-    //     <label>
-    //       Business
-    //       <input
-    //         value="business"
-    //         type="radio"
-    //         name="role"
-    //         onInput={handleUser}
-    //       />
-    //     </label>
-    //     <input type="submit" onClick={handleRegister} />
-    //   </form>
-    // </>
   );
 };
 

@@ -1,16 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Redirect, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
-const PrivateRoute = ({ component, ...rest }) => {
+const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token");
 
   const isAuth = useSelector((state) => state.userReducer.isAuth);
 
   if (!token && !isAuth) {
-    return <Redirect to="/" />;
+    return <Navigate to="/" replace />;
   } else {
-    return <Route {...rest} component={component} />;
+    return children;
   }
 };
 
