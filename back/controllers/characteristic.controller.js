@@ -1,7 +1,7 @@
-import { Characteristic } from "../models/Caracteristic";
-import { Post } from "../models/Caracteristic";
+import { Characteristic } from "../models/Characteristic";
+import { Post } from "../models/Characteristic";
 
-exports.addNewCharacteristic = async (req, res) => {
+const addCharacteristic = async (req, res) => {
     let postId = req.headers["_id"];
     let user = req.user;
     const ref = identify(user, postId);

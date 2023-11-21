@@ -14,6 +14,7 @@ import PrivateRoute from "./router/PrivateRoute";
 import MyPosts from "./Pages/myPosts/MyPosts";
 import PostForm from "./Pages/postForm/PostManager";
 import { currentAgency, myAgencys } from "./JS/actions/agency";
+import ScrollToTopButton from "./Components/scrollButton/ScrollButton";
 
 function App() {
   const user = useSelector((state) => state.userReducer.user);
@@ -40,6 +41,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />
+        <ScrollToTopButton />
         <PrivateRoute path="/agency/:id" component={Agency} />
         <PrivateRoute
           path={["/addpost", "/editpost"]}

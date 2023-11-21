@@ -1,6 +1,6 @@
 const express = require("express");
 
-const characteristic = require("../models/Caracteristic")
+const characteristic = require("../models/Characteristic")
 
 
 const router = express.Router();
