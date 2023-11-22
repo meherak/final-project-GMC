@@ -40,7 +40,7 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-        <Route exact path="/" element={Home} />
+        <Route exact path="/" element={<Home/>} />
 
         <Route
           path="/agency/:id"
@@ -79,7 +79,7 @@ function App() {
         />
         {/* <ScrollToTopButton /> */}
 
-        <Route path="/*" element={Error} />
+        <Route path="/*" element={<Error/>} />
       </Routes>
 
       <Footer />

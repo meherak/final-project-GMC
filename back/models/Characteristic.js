@@ -9,33 +9,45 @@ const characteristicSchema = new Schema({
     required: true,
     refPath: "postSchema",
   },
-  _id: Schema.Types.ObjectId,
+  characteristic: {
+    type: Schema.Types.ObjectId,
+    required: false,
+    ref: "Characteristic",
+  },
   space: Number,
   numberOfRooms: Number,
-  adresse: String,
+  addres: String,
   post: [{ type: Schema.Types.ObjectId, ref: 'Post' }]
 });
 
 const postSchema = Schema({
   characteristic: { type: Schema.Types.ObjectId, ref: 'Characteristic' },
   title: String,
-  price: Number,
-  characteristic: [{ type: Schema.Types.ObjectId, ref: 'Characteristic' }]
+  price: Number
 });
 
 const Characteristic = mongoose.model('Characteristic', characteristicSchema);
 const Post = mongoose.model('Post', postSchema);
 
-const router = express.Router();
-
-router.post("/characteristic", async (req, res) => {
-  // Your route logic here
-  
-  res.send('Characteristic post request received');
-});
-
-module.exports = {
-  Characteristic,
-  Post,
-  router,
+const addCharacteristic = async (characteristicData) => {
+  const newCharacteristic = new Characteristic(characteristicData);
+  await newCharacteristic.save();
+  return newCharacteristic._id;
 };
+
+const addPost = async (postData) => {
+  const { characteristic, ...rest } = postData;
+  const characteristicId = await addCharacteristic(characteristic);
+
+  const newPost = new Post({
+    ...rest,
+    characteristic: characteristicId,
+  });
+  await newPost.save();
+  return newPost;
+};
+
+
+module.exports = { Characteristic, Post,addCharacteristic,addPost };
+
+

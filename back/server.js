@@ -9,7 +9,6 @@ connectDB();
 
 // *********************************
 app.use(express.json());
-app.use("/api/post:id/",require("./router/characteristic"))
 app.use("/api/user", require("./router/user"));
 app.use("/api/post", require("./router/post"));
 app.use("/api/agency", require("./router/agency"));
