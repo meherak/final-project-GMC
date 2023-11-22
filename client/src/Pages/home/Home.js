@@ -3,6 +3,11 @@ import "./home.css";
 import { useDispatch, useSelector } from "react-redux";
 import { allPosts, searchPosts } from "../../JS/actions/post";
 import Posts from "../../Components/postList/PostsList";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+
+
+
 
 const Home = () => {
   const [searchInput, setSearchInput] = useState({
@@ -24,7 +29,7 @@ const Home = () => {
     <div className="home-container">
       <div className="search-container">
         <div className="search-header">
-          <h1>What is your project ? </h1>
+          <h1>What is your plans ? </h1>
         </div>
         <div className="search-body">
           <form className="serach-form" onSubmit={(e) => handleSearch(e)}>
@@ -57,11 +62,11 @@ const Home = () => {
                   }
                 />
               </div>
-
+      
               <input
                 type="text"
                 name="location"
-                placeholder="Where you want search?"
+                placeholder="Enter a place"
                 className="form-control search-input"
                 onChange={(e) =>
                   setSearchInput({
@@ -84,14 +89,15 @@ const Home = () => {
               />
             </div>
             <div>
-              <button type="submit">Search</button>
+              <button className="enter" type="submit">Search</button>
+              <FontAwesomeIcon icon={faArrowUp} /> 
             </div>
           </form>
         </div>
         <div className="search-footer"></div>
       </div>
       <div className="last-post-container">
-        <h3 className="last-post-title"> Last posts</h3>
+        <h3 className="last-post-title"> Latest offers</h3>
         <div className="last-posts-body">
           <Posts posts={posts} />
         </div>

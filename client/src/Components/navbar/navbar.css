@@ -2,17 +2,17 @@
   margin: 0;
   padding-bottom: 0;
   /* margin-bottom: 1rem; */
-  background-color: #1e2528 !important;
+  background-color: 235284 !important;
 }
 
 .navbar-brand {
-  color: #eee !important;
+  color: 235284 !important;
 }
 .nav-item {
   white-space: nowrap;
   font-size: 14px;
   display: block !important;
-  color: #eee;
+  color: 235284;
   text-decoration: none !important;
 }
 .btn-navbar {
@@ -38,6 +38,8 @@
 }
 .container-fluid {
   margin: 0 2rem;
+  font-size: large;
+  font-family: 'Times New Roman', Times, serif;
 }
 .btn-navbar > * {
   pointer-events: none;

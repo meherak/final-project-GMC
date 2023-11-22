@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +9,7 @@ import "./post-card.css";
 import Button from "../button/Button";
 import { useNavigate } from 'react-router-dom';
 import Details from "../postDetails/PostDetails";
+
 
 const PostCard = ({ post }) => {
   const user = useSelector((state) => state.userReducer.user);
@@ -23,6 +25,8 @@ const PostCard = ({ post }) => {
   const handleClick = () => {
     navigate('/postdetails');
   };
+
+
 
   const authorisation = () => {
     let adminPriv;
@@ -40,6 +44,8 @@ const PostCard = ({ post }) => {
         ) > -1;
 
     adminPriv = user && user.role === "business" && isMyEmployeesPosts;
+
+
     return adminPoster || adminPriv || userPoster;
   };
   return (
@@ -55,6 +61,7 @@ const PostCard = ({ post }) => {
        
       </div>
       <button className="view details" onClick={handleClick}>view details</button>
+     
 
       {authorisation() && (
         <div className="links">
