@@ -3,8 +3,7 @@ import "./home.css";
 import { useDispatch, useSelector } from "react-redux";
 import { allPosts, searchPosts } from "../../JS/actions/post";
 import Posts from "../../Components/postList/PostsList";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { FaSearch } from 'react-icons/fa';
 
 
 
@@ -88,9 +87,12 @@ const Home = () => {
                 }
               />
             </div>
-            <div>
-              <button className="enter" type="submit">Search</button>
-              <FontAwesomeIcon icon={faArrowUp} /> 
+            <div className="search-button-container">
+              <button className="enter" type="submit" >
+              <FaSearch icon="search" className="search-icon"  />
+
+                Search                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+                </button>
             </div>
           </form>
         </div>
