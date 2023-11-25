@@ -28,13 +28,13 @@ const Home = () => {
     <div className="home-container">
       <div className="search-container">
         <div className="search-header">
-          <h1>What is your plans ? </h1>
+          <h1 className="question"><b>What are you planing for ?</b> </h1>
         </div>
         <div className="search-body">
           <form className="serach-form" onSubmit={(e) => handleSearch(e)}>
             <div className="search-content">
               <div className="flex">
-                <label>Rent</label>
+                <label className="rent">Rent</label>
                 <input
                   value="rent"
                   type="radio"
@@ -48,8 +48,8 @@ const Home = () => {
                 />
               </div>
               <div className="flex">
-                <label>By</label>
-                <input
+                <label className="by">By</label>
+                <input 
                   value="by"
                   type="radio"
                   name="sType"
@@ -65,7 +65,7 @@ const Home = () => {
               <input
                 type="text"
                 name="location"
-                placeholder="Enter a place"
+                placeholder="Enter a place , an address ..."
                 className="form-control search-input"
                 onChange={(e) =>
                   setSearchInput({
@@ -77,7 +77,7 @@ const Home = () => {
               <input
                 type="text"
                 name="price"
-                placeholder="Max price $"
+                placeholder="Enter a price $$$"
                 className="form-control search-input"
                 onChange={(e) =>
                   setSearchInput({
@@ -87,12 +87,13 @@ const Home = () => {
                 }
               />
             </div>
-            <div className="search-button-container">
+            <div className="search-button-container"
+            >
+              
               <button className="enter" type="submit" >
-              <FaSearch icon="search" className="search-icon"  />
-
-                Search                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+               <i>Search</i> 
                 </button>
+
             </div>
           </form>
         </div>

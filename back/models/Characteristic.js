@@ -16,7 +16,7 @@ const characteristicSchema = new Schema({
   },
   space: Number,
   numberOfRooms: Number,
-  addres: String,
+  address: String,
   post: [{ type: Schema.Types.ObjectId, ref: 'Post' }]
 });
 

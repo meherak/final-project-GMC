@@ -8,7 +8,7 @@ import houseImj from "../../assets/download.jpg";
 import "./post-card.css";
 import Button from "../button/Button";
 import { useNavigate } from 'react-router-dom';
-import Details from "../postDetails/PostDetails";
+import PostDetails from "../postDetails/PostDetails";
 
 
 const PostCard = ({ post }) => {
@@ -60,8 +60,9 @@ const PostCard = ({ post }) => {
         </p>
        
       </div>
-      <button className="view details" onClick={handleClick}>view details</button>
-     
+      <Link to={`/postdetails/${post._id}`} className="view-details">
+        View Details
+      </Link>     
 
       {authorisation() && (
         <div className="links">
