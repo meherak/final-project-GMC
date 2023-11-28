@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import "./home.css";
+import { Link,useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
+
 import { allPosts, searchPosts } from "../../JS/actions/post";
 import Posts from "../../Components/postList/PostsList";
 import { FaSearch } from 'react-icons/fa';
-
-
+import "./home.css";
+import Footer from "../../Components/footer/Footer";
 
 
 const Home = () => {
+  const location = useLocation();
   const [searchInput, setSearchInput] = useState({
     sType: null,
     location: null,
@@ -16,6 +18,8 @@ const Home = () => {
   });
   const posts = useSelector((state) => state.postReducer.post);
   const dispatch = useDispatch();
+  const [showFooter, setShowFooter] = useState(true); 
+
 
   useEffect(() => {
     dispatch(allPosts());
@@ -24,6 +28,16 @@ const Home = () => {
     e.preventDefault();
     dispatch(searchPosts(searchInput));
   };
+  useEffect(() => {
+    const currentRoute = location.pathname;
+    console.log('Current Route:', currentRoute);
+
+    if (currentRoute === '/') {
+      setShowFooter(false);
+    } else {
+      setShowFooter(true);
+    }
+  }, [location.pathname]);
   return (
     <div className="home-container">
       <div className="search-container">
@@ -105,7 +119,11 @@ const Home = () => {
           <Posts posts={posts} />
         </div>
       </div>
+      <Link to="/chat">Chat</Link>
+      {showFooter && <Footer />}
+
     </div>
+    
   );
 };
 

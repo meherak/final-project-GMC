@@ -7,6 +7,8 @@ import ShowHideModal from "../Modal/ShowHideModal";
 import useModal from "../Modal/useModal";
 import "./navbar.css";
 
+
+
 export default function Navbar() {
   const [modalShouldShow, setModalShouldShow] = useState("");
   const isAuth = useSelector((state) => state.userReducer.isAuth);

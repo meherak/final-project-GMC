@@ -15,6 +15,7 @@ import MyPosts from "./Pages/myPosts/MyPosts";
 import PostForm from "./Pages/postForm/PostManager";
 import { currentAgency, myAgencys } from "./JS/actions/agency";
 // import ScrollToTopButton from "./Components/scrollButton/ScrollButton";
+import ChatWindow from "./Components/chatWindow/ChatWindow";
 
 function App() {
   const user = useSelector((state) => state.userReducer.user);
@@ -78,6 +79,13 @@ function App() {
           }
         />
         {/* <ScrollToTopButton /> */}
+
+        <Route
+          path="/chat"
+          element={
+              <ChatWindow />
+          }
+        />
 
         <Route path="/*" element={<Error/>} />
       </Routes>
