@@ -120,7 +120,7 @@ const Home = () => {
         </div>
       </div>
       <Link to="/chat">Chat</Link>
-      {showFooter && <Footer />}
+      {/* {showFooter && <Footer />} */}
 
     </div>
     
