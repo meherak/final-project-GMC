@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import axios from "axios";
+
 import {
   addPost,
   editPost,
@@ -18,6 +20,8 @@ const PostForm = () => {
     street: "",
     postal_code: "",
   });
+
+  const [characteristics, setcharacteristics] = useState([]);
 
   const [post, setPost] = useState({
     title: "",
@@ -63,6 +67,17 @@ const PostForm = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getPost, location.state]);
+
+  // get all characteristics on component init
+  useEffect(() => {
+    fetchCharacteristic();
+  }, []);
+
+  const fetchCharacteristic = async () => {
+    let charachteristic = await axios.get(`/api/characteristic/all`);
+    console.log("characteristics ===> ", charachteristic.data.data);
+    return charachteristic;
+  };
 
   const handleAddPost = (e) => {
     e.preventDefault();
@@ -224,6 +239,9 @@ const PostForm = () => {
                   }}
                 />
               </div>
+
+              {/* display the characteristic list */}
+
               <Button
                 label="Save"
                 color="primary"

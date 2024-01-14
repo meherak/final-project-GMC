@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import PostCard from "../postCard/PostCard";
 import Loader from "../loader/Loader";
+import './postList.css'
 
 const PostsList = ({ posts }) => {
   const isLoad = useSelector((state) => state.postReducer.isLoad);

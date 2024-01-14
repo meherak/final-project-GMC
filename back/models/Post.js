@@ -11,6 +11,12 @@ const postSchema = new Schema({
     required: true,
     enum: ["agency", "user"],
   },
+  characteristics: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "characteristic",
+    }
+  ],
 
   title: {
     type: String,

@@ -15,7 +15,6 @@ exports.addNewPost = async (req, res) => {
   });
 
   try {
-   
     let post = await newPost.save();
     res.send({ msg: "post is saved", post });
   } catch (error) {
@@ -225,11 +224,19 @@ exports.findPost = async (req, res) => {
           as: "users",
         },
       },
+      {
+        $lookup: {
+          from: "characteristics",
+          localField: "characteristics",
+          foreignField: "_id",
+          as: "characteristics",
+        },
+      },
     ]);
 
-    res.status(200).send({ msg: "finded post", post });
+    res.status(200).send({ msg: "LOAD_POST_SUCCESSFULLY", post });
   } catch (error) {
-    res.status(400).send({ msg: "post not found", error });
+    res.status(400).send({ msg: "CAN_NOT_LOAD_POST", error });
   }
 };
 exports.searchPosts = async (req, res) => {

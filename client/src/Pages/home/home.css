@@ -49,7 +49,7 @@
   align-items: center;
 }
 
-.btn{
+/* .btn{
   color: #ccc;
   position: fixed;
   bottom: 20px;
@@ -61,7 +61,7 @@
   border-radius: 15px; 
   cursor: pointer;
   font-size: 18px;
-}
+} */
 
 .enter{
   text-align: center; /* Align text to the left */

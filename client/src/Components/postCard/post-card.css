@@ -4,13 +4,6 @@
   margin: 1rem 5px;
 }
 
-.posts-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
-
 .card .links {
   display: flex;
   background-color: #eee;
@@ -23,10 +16,10 @@
 
 .links .btn {
   width: 100%;
-  /* display: flex; */
+  display: flex;
   border-radius: 0;
-  /* justify-content: center; */
-  /* border: 1px solid #d1d1d1; */
+  justify-content: center;
+  border: 1px solid #d1d1d1;
 }
 
 .card .view details {
@@ -36,4 +29,12 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.view-details {
+  text-decoration: none;
+}
+
+.view-details:hover {
+  text-decoration: underline;
 }

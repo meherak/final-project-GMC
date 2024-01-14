@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { allPosts, searchPosts } from "../../JS/actions/post";
 import Posts from "../../Components/postList/PostsList";
-import { FaSearch } from 'react-icons/fa';
-import "./home.css";
-import Footer from "../../Components/footer/Footer";
+// import { FaSearch } from 'react-icons/fa';
+
+
 
 
 const Home = () => {

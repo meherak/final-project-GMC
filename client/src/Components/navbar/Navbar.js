@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../JS/actions/user";
 
@@ -32,9 +32,9 @@ export default function Navbar() {
       />
 
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           SE LOGER
-        </a>
+        </Link>
         {isAuth ? (
           <div className="navbar-nav d-flex flex-row">
             <button

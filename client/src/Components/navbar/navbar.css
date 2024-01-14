@@ -1,8 +1,9 @@
 .navbar.navbar-light {
   margin: 0;
-  padding-bottom: 0;
+  padding: 12px 24px;
   /* margin-bottom: 1rem; */
   background-color: 235284 !important;
+  box-shadow: 0 1px 3px rgb(237, 237, 237, 01);
 }
 
 .navbar-brand {
