@@ -20,9 +20,10 @@ export const register = (newUser, history) => async (dispatch) => {
     );
     console.log(data);
     dispatch({ type: REGISTER_USER, payload: data }); //payload:{msg,user,token}
-    history.push("/");
+   // history.push("/");
   } catch (error) {
-    dispatch({ type: FAIL_USER, payload: error.response.data });
+    console.log("error register ==>",error);
+    dispatch({ type: FAIL_USER, payload: error });
   }
 };
 

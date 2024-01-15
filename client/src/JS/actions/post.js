@@ -29,9 +29,9 @@ export const addPost = (post, address, history) => async (dispatch) => {
     let { _id } = data.post;
     dispatch(addAddress(address, _id, "post"));
 
-    history.push("/posts");
+   // history.push("/posts");
   } catch (error) {
-    dispatch({ type: FAIL_POST, payload: error.response.data });
+    dispatch({ type: FAIL_POST, payload: error });
   }
 };
 
