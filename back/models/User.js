@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
-// const isNotEmployer = require("./isNotEmployer");
 const arrOfRole = ["particular", "business", "employer"];
 const roleWithEmail = ["particular", "business"];
 const isEmployer = () => {

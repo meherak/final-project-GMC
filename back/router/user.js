@@ -21,6 +21,7 @@ router.post(
 router.post("/login", loginValidation(), validation, login);
 
 router.get("/me", isAuth, (req, res) => {
+
   res.send({ user: req.user });
 });
 

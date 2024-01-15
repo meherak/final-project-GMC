@@ -241,6 +241,21 @@ const PostForm = () => {
               </div>
 
               {/* display the characteristic list */}
+              <div>
+    {characteristics.map((characteristic) => (
+      <div key={characteristic._id}>
+        {characteristic.name}
+      </div>
+    ))}
+
+    <select>
+      {characteristics.map((characteristic) => (
+        <option key={characteristic._id} value={characteristic.slug}>
+          {characteristic.name}
+        </option>
+      ))}
+    </select>
+  </div>
 
               <Button
                 label="Save"
