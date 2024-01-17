@@ -5,12 +5,16 @@ import { current } from "../../JS/actions/user";
 import Agencys from "../Agencys";
 import "./Modal.css";
 import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
+import { addPost } from "../../JS/actions/post";
 
 
 const AccountModal = ({ isShowing, toggle }) => {
   const [agencyToggle, setAgencyToggle] = useState(false);
   const [file, setFile] = useState(null);
   const [uploadError, setUploadError] = useState(null);
+
+  const location = useLocation();
 
   const user = useSelector((state) => state.userReducer.user);
   const loadUser = useSelector((state) => state.userReducer.isLoad);
