@@ -15,6 +15,17 @@ const AccountModal = ({ isShowing, toggle }) => {
   const user = useSelector((state) => state.userReducer.user);
   const loadUser = useSelector((state) => state.userReducer.isLoad);
 
+  const [post, setPost] = useState({
+    name: "",
+    phoneNumber: "",
+    typeOfGood: "",
+    address: "",
+  });
+
+  const handleChange = (e) => {
+    setPost({ ...post, [e.target.name]: e.target.value });
+  };
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(current());
@@ -29,7 +40,6 @@ const AccountModal = ({ isShowing, toggle }) => {
         "https://api.cloudinary.com/v1_1/dmv4km71s/upload",
         form
       );
-
       const updatedUser = {
         ...user,
         profilePicture: response.data.secure_url,
@@ -54,76 +64,41 @@ const AccountModal = ({ isShowing, toggle }) => {
     "Toys and Games",
     "Sports and Outdoors",
   ];
+  function renderDomainOptions() {
+    return domainOfGoodsOptions.map((domain) => (
+      <option key={domain} value={domain}>{domain}</option>
+    ));
+  }
 
   return (
     isShowing &&
     ReactDOM.createPortal(
       <React.Fragment>
     <div
- 
- className="modal-overlay-custom" />
- 
-         
- <div
- 
-           
- className="modal-wrapper-custom form"
- 
-           
- aria-modal
- 
-           
- aria-hidden
- 
-           
- tabIndex={-1}
- 
-           
+ className="modal-overlay-custom" />        
+ <div          
+ className="modal-wrapper-custom form"            
+ aria-modal          
+ aria-hidden          
+ tabIndex={-1}          
  role="dialog"
-         >
- 
-           
- <div
-  
- className="modal-custom">
- 
-             
- <div
-  
- className="modal-header-custom">
- 
-               
+         >          
  <div 
-  
- className="title" >My Account</div>
- 
-               
- <button
- 
-                 
- type="button"
- 
-                 
- className="modal-close-button-custom"
- 
-                 
- data-dismiss="modal-custom"
- 
-                 
- aria-label="Close"
- 
-                 
+ className="modal-custom">            
+ <div 
+ className="modal-header-custom">              
+ <div 
+ className="title" >My Account</div>             
+ <button               
+ type="button"                
+ className="modal-close-button-custom"               
+ data-dismiss="modal-custom"                
+ aria-label="Close"                
  onClick={toggle}
-               >
- 
-                 
+               >               
  <span
-  
- aria-hidden="true">&times;</span>
- 
-               
+ aria-hidden="true">&times;</span>              
  </button>
- 
              
  </div>
              {loadUser ? (
@@ -139,17 +114,37 @@ const AccountModal = ({ isShowing, toggle }) => {
           <div>
             <input
               type="file"
-              value={file}
               onChange={(e) => setFile(e.target.files[0])}
             />
             <button onClick={uploadImage}>Upload!</button>
           </div>
-                   <div className="info">
-                     <h2>Name : {user.name || "Please update your name."}</h2>
-                     <p>Phone Number: {user.phoneNumber || "(Enter phone number)."}</p>
-                     <p>Domain of Goods: {user.domainOfGoods || "(Select your domain)."}</p>
-                     <p>Address: {user.address || "(Add your address)."}</p>
-                   </div>
+          <div className="info">
+  <table>
+    <tbody>
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" value={user.name || ""} onChange={(e) => handleChange(e.target.value)} /></td>
+      </tr>
+      <tr>
+        <td>Phone Number:</td>
+        <td><input type="tel" value={user.phoneNumber || ""} onChange={(e) => handleChange(e.target.value)} /></td>
+      </tr>
+      <tr>
+      <td>Domain of Goods:</td>
+  <td>
+    <select value={user.domainOfGoods || ""} onChange={(e) => handleChange(e.target.value)}>
+      {renderDomainOptions()}
+    </select>
+  </td>
+      </tr>
+      <tr>
+        <td>Address:</td>
+        <td><textarea value={user.address || ""} onChange={(e) => handleChange(e.target.value)} /></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
                    <button>Save</button>
                  </div>
                  {user.role === "business" ? (
