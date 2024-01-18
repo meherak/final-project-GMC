@@ -12,6 +12,7 @@ import { addPost } from "../../JS/actions/post";
 const AccountModal = ({ isShowing, toggle }) => {
   const [agencyToggle, setAgencyToggle] = useState(false);
   const [file, setFile] = useState(null);
+  const [url,setUrl] = useState("")
   const [uploadError, setUploadError] = useState(null);
 
   const location = useLocation();
@@ -43,7 +44,8 @@ const AccountModal = ({ isShowing, toggle }) => {
       const response = await axios.post(
         "https://api.cloudinary.com/v1_1/dmv4km71s/upload",
         form
-      );
+      )
+    .then(result=>{setUrl(result.data.secure_url)})
       const updatedUser = {
         ...user,
         profilePicture: response.data.secure_url,
@@ -111,7 +113,7 @@ const AccountModal = ({ isShowing, toggle }) => {
                <div className="modal-body">
                  <div className="account-info">
                  <img
-            src={user.profilePicture || "placeholder.png"}
+            src={url}
             alt="Profile Picture"
           />
           {uploadError && <p className="error">{uploadError}</p>}
