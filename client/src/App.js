@@ -12,7 +12,7 @@ import Navbar from "./Components/navbar/Navbar";
 import Footer from "./Components/footer/Footer";
 import PrivateRoute from "./router/PrivateRoute";
 import MyPosts from "./Pages/myPosts/MyPosts";
-import PostForm from "./Pages/postForm/PostManager";
+import PostForm from "./Pages/postForm/PostForm";
 import { currentAgency, myAgencys } from "./JS/actions/agency";
 // import ScrollToTopButton from "./Components/scrollButton/ScrollButton";
 import ChatWindow from "./Components/chatWindow/ChatWindow";

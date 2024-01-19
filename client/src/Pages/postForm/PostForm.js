@@ -13,6 +13,8 @@ import {
 import Loader from "../../Components/loader/Loader";
 import Button from "../../Components/button/Button";
 
+import "./PostForm.css";
+
 const PostForm = () => {
   const [address, setAddress] = useState({
     city: "",
@@ -21,7 +23,7 @@ const PostForm = () => {
     postal_code: "",
   });
 
-  const [characteristics, setcharacteristics] = useState([]);
+  const [characteristics, setCharacteristics] = useState([]);
 
   const [post, setPost] = useState({
     title: "",
@@ -74,9 +76,13 @@ const PostForm = () => {
   }, []);
 
   const fetchCharacteristic = async () => {
-    let charachteristic = await axios.get(`/api/characteristic/all`);
-    console.log("characteristics ===> ", charachteristic.data.data);
-    return charachteristic;
+    let characteristicResponse = await axios.get(`/api/characteristic/all`);
+
+    characteristicResponse.data.data.forEach((characteristic) => {
+      setCharacteristics((prev) => {
+        return [...prev, { isSelected: false, content: characteristic }];
+      });
+    });
   };
 
   const handleAddPost = (e) => {
@@ -94,6 +100,12 @@ const PostForm = () => {
   const handleChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
   };
+  const handleSelectCharacteristique = (index) => {
+    setCharacteristics((prev) => {
+      prev[index] = { ...prev[index], isSelected: !prev[index].isSelected };
+      return [...prev];
+    });
+  };
 
   return (
     <div className="container mb-3">
@@ -102,34 +114,36 @@ const PostForm = () => {
       ) : errors ? (
         <h2>error</h2>
       ) : (
-        <div className="row justify-content-center">
+        <div className="row justify-content-start text-left">
+          <p className="title text-black my-5">Add New Post</p>
           <div className="col-md-6">
             <form onSubmit={handleAddPost} className="form-container">
-              <div className="mb-3">
-                <label>
-                  Rent
+              <div className="d-flex mb-4">
+                <div className="form-check pr-2">
                   <input
+                    id="rent"
                     value="rent"
                     type="radio"
                     name="sType"
+                    className="form-check-input"
                     onChange={handleChange}
                   />
-                </label>
-              </div>
-
-              <div className="mb-3">
-                <label>
-                  By
+                  <label className="form-check-label">Rent</label>
+                </div>
+                <div className="form-check">
                   <input
+                    id="by"
                     value="by"
                     type="radio"
                     name="sType"
+                    className="form-check-input"
                     onChange={handleChange}
                   />
-                </label>
+                  <label className="form-check-label">By</label>
+                </div>
               </div>
 
-              <div className="mb-3">
+              <div className="mb-4">
                 <label htmlFor="title" className="form-label">
                   Title :
                 </label>
@@ -141,7 +155,7 @@ const PostForm = () => {
                   onChange={handleChange}
                 />
               </div>
-              <div className="mb-3">
+              <div className="mb-4">
                 <label htmlFor="price" className="form-label">
                   Price :
                 </label>
@@ -154,7 +168,7 @@ const PostForm = () => {
                 />
               </div>
 
-              <div className="mb-3">
+              <div className="mb-4">
                 <label htmlFor="description" className="form-label">
                   Description :
                 </label>
@@ -168,7 +182,7 @@ const PostForm = () => {
                 ></textarea>
               </div>
 
-              <div className="mb-3">
+              <div className="mb-4">
                 <label htmlFor="title" className="form-label">
                   State :
                 </label>
@@ -186,25 +200,27 @@ const PostForm = () => {
                 />
               </div>
 
-              <div className="mb-3">
+              <div className="mb-4">
                 <label htmlFor="title" className="form-label">
                   City :
                 </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="city"
-                  value={address && address.city}
-                  onChange={(e) => {
-                    setAddress({
-                      ...address,
-                      [e.target.name]: e.target.value,
-                    });
-                  }}
-                />
+                <div className="input-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="city"
+                    value={address && address.city}
+                    onChange={(e) => {
+                      setAddress({
+                        ...address,
+                        [e.target.name]: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
               </div>
 
-              <div className="mb-3">
+              <div className="mb-4">
                 <label htmlFor="title" className="form-label">
                   Postal code :
                 </label>
@@ -222,7 +238,7 @@ const PostForm = () => {
                 />
               </div>
 
-              <div className="mb-3">
+              <div className="mb-4">
                 <label htmlFor="title" className="form-label">
                   Street Number :
                 </label>
@@ -240,22 +256,30 @@ const PostForm = () => {
                 />
               </div>
 
-              {/* display the characteristic list */}
-              <div>
-    {characteristics.map((characteristic) => (
-      <div key={characteristic._id}>
-        {characteristic.name}
-      </div>
-    ))}
-
-    <select>
-      {characteristics.map((characteristic) => (
-        <option key={characteristic._id} value={characteristic.slug}>
-          {characteristic.name}
-        </option>
-      ))}
-    </select>
-  </div>
+              <div className="d-flex flex-wrap">
+                {characteristics.map((characteristic, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={`
+                      m-2 
+                      px-3 py-1 
+                      rounded-pill 
+                      flex justify-content-center align-items-center 
+                      cursor-pointer 
+                      text-light
+                      ${
+                        characteristic.isSelected
+                          ? "bg-primary"
+                          : "bg-secondary"
+                      }`}
+                      onClick={(e) => handleSelectCharacteristique(index)}
+                    >
+                      <p className="m-0">{characteristic.content.name}</p>
+                    </div>
+                  );
+                })}
+              </div>
 
               <Button
                 label="Save"

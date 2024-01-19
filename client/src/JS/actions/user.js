@@ -22,7 +22,6 @@ export const register = (newUser, history) => async (dispatch) => {
     dispatch({ type: REGISTER_USER, payload: data }); //payload:{msg,user,token}
    // history.push("/");
   } catch (error) {
-    console.log("error register ==>",error);
     dispatch({ type: FAIL_USER, payload: error });
   }
 };
