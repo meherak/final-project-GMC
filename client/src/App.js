@@ -16,7 +16,7 @@ import PostForm from "./Pages/postForm/PostForm";
 import { currentAgency, myAgencys } from "./JS/actions/agency";
 // import ScrollToTopButton from "./Components/scrollButton/ScrollButton";
 import ChatWindow from "./Components/chatWindow/ChatWindow";
-import { PostSheet } from "./Pages/posts/PostSeet/PostSheet";
+import PostSheet from "./Pages/posts/PostSeet/PostSheet";
 
 function App() {
   const user = useSelector((state) => state.userReducer.user);
