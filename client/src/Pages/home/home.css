@@ -21,12 +21,15 @@
 }
 
 .search-input {
-  margin-right: 8px;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
+  border: 1px solid #333; /* Black border */
+  border-radius: 5px;
+  padding: 12px 18px;
+  font-size: 18px;
+  font-family: Roboto, sans-serif;
+  background-color: #eee;
+  
 }
+
 
 .search-content {
   display: flex;
@@ -57,6 +60,7 @@
   border-radius: 15px;
   justify-content: left;
   align-items: left;
+  margin-bottom: 20px;
 }
 
 .by {

@@ -8,6 +8,7 @@ import Button from "../../Components/button/Button";
 
 import "./home.css";
 
+
 const Home = () => {
   const location = useLocation();
   const [searchInput, setSearchInput] = useState({

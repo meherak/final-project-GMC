@@ -62,13 +62,9 @@ const AccountModal = ({ isShowing, toggle }) => {
     }
   };
   const domainOfGoodsOptions = [
-    "Clothing",
-    "Electronics",
-    "Books",
-    "Home and Kitchen",
-    "Beauty and Personal Care",
-    "Toys and Games",
-    "Sports and Outdoors",
+    "Cash",
+    "Checks",
+    "Credit cards",
   ];
   function renderDomainOptions() {
     return domainOfGoodsOptions.map((domain) => (
@@ -114,7 +110,7 @@ const AccountModal = ({ isShowing, toggle }) => {
                  <div className="account-info">
                  <img
             src={url}
-            alt="Profile Picture"
+            alt=" Picture"
           />
           {uploadError && <p className="error">{uploadError}</p>}
           <div>
@@ -136,7 +132,7 @@ const AccountModal = ({ isShowing, toggle }) => {
         <td><input type="tel" value={user.phoneNumber || ""} onChange={(e) => handleChange(e.target.value)} /></td>
       </tr>
       <tr>
-      <td>Domain of Goods:</td>
+      <td>Payment Method:</td>
   <td>
     <select value={user.domainOfGoods || ""} onChange={(e) => handleChange(e.target.value)}>
       {renderDomainOptions()}
