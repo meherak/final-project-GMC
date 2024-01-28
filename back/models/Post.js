@@ -34,7 +34,7 @@ const postSchema = new Schema({
   sType: {
     type: String,
     required: true,
-    enum: ["by", "rent"],
+    enum: ["SALE", "RENT"],
   },
 
   date: {
