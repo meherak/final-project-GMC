@@ -1,7 +1,7 @@
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr auto; 
-  gap: 10px; 
+  grid-template-columns: 1fr auto;
+  gap: 10px;
 }
 
 .search-container {
@@ -9,20 +9,15 @@
   color: #ffffffd9;
   max-height: 30rem;
   height: 30rem;
-  padding-top: 10rem;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover; /* <------ */
   background-repeat: no-repeat;
   background-position: center center;
-}
-
-.search-content{
-  font-size: 20px;
-  margin-left: 10px;
-  cursor: pointer;
-  color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .search-input {
@@ -36,12 +31,10 @@
 .search-content {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 0 30%;
-  margin-bottom: 16px;
+  padding: 32px 0;
   color: black;
-  font-size:medium;
-  font-weight:500;
+  font-size: medium;
+  font-weight: 500;
 }
 
 .flex {
@@ -49,71 +42,26 @@
   align-items: center;
 }
 
-/* .btn{
-  color: #ccc;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #ff0000;
-  color: #fff;
-  padding: 15px 20px;
-  border: none;
-  border-radius: 15px; 
-  cursor: pointer;
-  font-size: 18px;
-} */
-
-.enter{
-  text-align: center; /* Align text to the left */
-  border-radius: 7px; 
-  font-size: smaller;
-  height: min-content;
-  width: auto; /* Allow the button to expand based on content */
-  background-color: #FAFAFA; 
-  color: gray;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.search-card{
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 14px;
 }
 
 .last-post-title {
-  color: blue; 
-  font-size: 1.2em; 
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-weight:bold;
-  text-decoration:double;
-  white-space:calc();
+  font-size: 1.2em;
+  font-weight: bold;
+  text-decoration: double;
   padding-top: 20px;
 }
 
-.last-post-container{
-  border-radius: 15px; 
+.last-post-container {
+  border-radius: 15px;
   justify-content: left;
   align-items: left;
 }
 
-
-
-.search-button-container{
-  text-align: left;
-  justify-content: flex-start;
-  flex-grow: 1;
-}
-
-/* .rent{
+.by {
   color: black;
   font-size: small;
-} */
-
-.by{
-  color: black;
-  font-size: small;
-}
-.question{
-  color:#0F52BA;
-  margin-top: -10px;
-
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 input:hover {
@@ -121,19 +69,27 @@ input:hover {
   border: 1px solid #ccc;
   outline: none;
 }
-i{
-  font-size:small;
-  font-family:var();
+i {
+  font-size: small;
+  font-family: var();
 }
-b{
-  font-size:larger;
+b {
+  font-size: larger;
 }
-.search-header{
+.carouse-title {
   margin-top: -50px;
+  margin-bottom: 32px;
 }
 
-.form-control search-input
-{
+.form-control search-input {
   background-color: gray;
-
 }
+
+.search-card {
+  background-color: white;
+  border: transparent;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding: 16px;
+}
+

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link,useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { allPosts, searchPosts } from "../../JS/actions/post";
 import Posts from "../../Components/postList/PostsList";
-// import { FaSearch } from 'react-icons/fa';
+import Button from "../../Components/button/Button";
 
-
-
+import "./home.css";
 
 const Home = () => {
   const location = useLocation();
@@ -18,8 +17,6 @@ const Home = () => {
   });
   const posts = useSelector((state) => state.postReducer.post);
   const dispatch = useDispatch();
-  const [showFooter, setShowFooter] = useState(true); 
-
 
   useEffect(() => {
     dispatch(allPosts());
@@ -28,59 +25,29 @@ const Home = () => {
     e.preventDefault();
     dispatch(searchPosts(searchInput));
   };
+
   useEffect(() => {
     const currentRoute = location.pathname;
-    console.log('Current Route:', currentRoute);
-
-    if (currentRoute === '/') {
-      setShowFooter(false);
-    } else {
-      setShowFooter(true);
-    }
+    console.log("Current Route:", currentRoute);
   }, [location.pathname]);
+
   return (
     <div className="home-container">
       <div className="search-container">
-        <div className="search-header">
-          <h1 className="question"><b>What are you planing for ?</b> </h1>
-        </div>
-        <div className="search-body">
-          <form className="serach-form" onSubmit={(e) => handleSearch(e)}>
-            <div className="search-content">
-              <div className="flex">
-                <label className="rent">Rent</label>
-                <input
-                  value="rent"
-                  type="radio"
-                  name="sType"
-                  onChange={(e) =>
-                    setSearchInput({
-                      ...searchInput,
-                      [e.target.name]: e.target.value,
-                    })
-                  }
-                />
-              </div>
-              <div className="flex">
-                <label className="by">By</label>
-                <input 
-                  value="by"
-                  type="radio"
-                  name="sType"
-                  onChange={(e) =>
-                    setSearchInput({
-                      ...searchInput,
-                      [e.target.name]: e.target.value,
-                    })
-                  }
-                />
-              </div>
-      
+        <div className="carousel-content">
+          <div className="mb-4">
+            <h1 className="text-dark font-weight-bold">
+              What are you planing for ?
+            </h1>
+          </div>
+          <div className="d-flex bg-light">
+            <div className="flex-grow-1">
               <input
-                type="text"
-                name="location"
-                placeholder="Enter a place , an address ..."
-                className="form-control search-input"
+                id="RENT"
+                value="RENT"
+                type="radio"
+                name="sType"
+                className="btn-check"
                 onChange={(e) =>
                   setSearchInput({
                     ...searchInput,
@@ -88,11 +55,20 @@ const Home = () => {
                   })
                 }
               />
+              <label
+                className="btn btn-outline-secondary w-100 rounded-0"
+                for="RENT"
+              >
+                Rent
+              </label>
+            </div>
+            <div className="flex-grow-1">
               <input
-                type="text"
-                name="price"
-                placeholder="Enter a price $$$"
-                className="form-control search-input"
+                id="SALE"
+                value="SALE"
+                type="radio"
+                name="sType"
+                className="btn-check"
                 onChange={(e) =>
                   setSearchInput({
                     ...searchInput,
@@ -100,18 +76,50 @@ const Home = () => {
                   })
                 }
               />
+              <label
+                className="btn btn-outline-secondary w-100 rounded-0"
+                for="SALE"
+              >
+                Purchase
+              </label>
             </div>
-            <div className="search-button-container"
-            >
-              
-              <button className="enter" type="submit" >
-               <i>Search</i> 
-                </button>
-
+          </div>
+          <div className="search-card">
+            <div className="search-body">
+              <form className="serach-form" onSubmit={(e) => handleSearch(e)}>
+                <div className="search-content">
+                  <input
+                    type="text"
+                    name="location"
+                    placeholder="Enter a place , an address ..."
+                    className="form-control search-input"
+                    onChange={(e) =>
+                      setSearchInput({
+                        ...searchInput,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                  />
+                  <input
+                    type="text"
+                    name="price"
+                    placeholder="Enter a price $$$"
+                    className="form-control search-input"
+                    onChange={(e) =>
+                      setSearchInput({
+                        ...searchInput,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+                <div className="search-button-container">
+                  <Button label="Search" type="submit" color="primary" />
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
-        <div className="search-footer"></div>
       </div>
       <div className="last-post-container">
         <h3 className="last-post-title"> Latest offers</h3>
@@ -119,11 +127,7 @@ const Home = () => {
           <Posts posts={posts} />
         </div>
       </div>
-      <Link to="/chat">Chat</Link>
-      {/* {showFooter && <Footer />} */}
-
     </div>
-    
   );
 };
 
