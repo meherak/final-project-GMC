@@ -16,6 +16,7 @@ import PostForm from "./Pages/postForm/PostForm";
 import { currentAgency, myAgencys } from "./JS/actions/agency";
 // import ScrollToTopButton from "./Components/scrollButton/ScrollButton";
 import ChatWindow from "./Components/chatWindow/ChatWindow";
+import { PostSheet } from "./Pages/posts/PostSeet/PostSheet";
 
 function App() {
   const user = useSelector((state) => state.userReducer.user);
@@ -41,7 +42,7 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-        <Route exact path="/" element={<Home/>} />
+        <Route exact path="/" element={<Home />} />
 
         <Route
           path="/agency/:id"
@@ -78,16 +79,20 @@ function App() {
             </PrivateRoute>
           }
         />
-        {/* <ScrollToTopButton /> */}
 
         <Route
-          path="/chat"
+          path="/postdetails/:id"
           element={
-              <ChatWindow />
+            <PrivateRoute>
+              <PostSheet />
+            </PrivateRoute>
           }
         />
+        {/* <ScrollToTopButton /> */}
 
-        <Route path="/*" element={<Error/>} />
+        <Route path="/chat" element={<ChatWindow />} />
+
+        <Route path="/*" element={<Error />} />
       </Routes>
 
       <Footer />
