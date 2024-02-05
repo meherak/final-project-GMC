@@ -103,48 +103,55 @@ const AccountModal = ({ isShowing, toggle }) => {
  </button>
              
  </div>
+ 
              {loadUser ? (
-               <h3>Loading...</h3>
+ <div className="text-center">
+ <h3 className="mb-4">Loading...</h3>
+ <div className="spinner-border text-primary" role="status">
+   <span className="sr-only">Loading...</span>
+ </div>
+</div>
              ) : user ? (
-               <div className="modal-body">
-                 <div className="account-info">
+               <div className="container mb-3">
+                 <div className="row justify-content-start text-left">
                  <img
             src={url}
             alt=" Picture"
           />
-          {uploadError && <p className="error">{uploadError}</p>}
-          <div>
+          {uploadError && <div className="alert alert-danger mt-3" role="alert">
+            {uploadError}
+          </div>}
+          <div className="d-flex justify-content-center">
             <input
               type="file"
+              className="form-control form-control-lg"
               onChange={(e) => setFile(e.target.files[0])}
             />
-            <button onClick={uploadImage}>Upload!</button>
+            <button  className="btn btn-primary btn-lg ms-3" onClick={uploadImage}>Upload!</button>
           </div>
-          <div className="info">
-  <table>
-    <tbody>
-      <tr>
-        <td>Name:</td>
-        <td><input type="text" value={user.name || ""} onChange={(e) => handleChange(e.target.value)} /></td>
-      </tr>
-      <tr>
-        <td>Phone Number:</td>
-        <td><input type="tel" value={user.phoneNumber || ""} onChange={(e) => handleChange(e.target.value)} /></td>
-      </tr>
-      <tr>
-      <td>Payment Method:</td>
-  <td>
+
+          <div className="col-md-6">
+ 
+     
+        <label htmlFor="Name">Name : </label>
+        <input type="text" id="name" value={user.name || ""} onChange={(e) => handleChange(e.target.value)} className="form-control" />
+      
+        <label htmlFor="Phonenumber">Phone Number:</label>
+        <input type="tel" value={user.phoneNumber || ""} onChange={(e) => handleChange(e.target.value)} className="form-control" />
+      
+      <label>Payment Method:</label>
+      <div className="d-flex align-items-center">
+
     <select value={user.domainOfGoods || ""} onChange={(e) => handleChange(e.target.value)}>
       {renderDomainOptions()}
     </select>
-  </td>
-      </tr>
-      <tr>
-        <td>Address:</td>
-        <td><textarea value={user.address || ""} onChange={(e) => handleChange(e.target.value)} /></td>
-      </tr>
-    </tbody>
-  </table>
+  </div>
+
+ 
+
+        <label htmlFor="Address">Address :</label>
+        <input type="text" value={user.address || ""} onChange={(e) => handleChange(e.target.value)} className="form-control"/>
+    
 </div>
 
                    <button>Save</button>

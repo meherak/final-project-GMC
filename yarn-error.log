@@ -36,7 +36,7 @@ npm manifest:
       "front": "cd client && npm start",
       "dev": "concurrently \"npm run front\" \"npm run back\""
     },
-    "author": "Meher",
+    "author": "Assil Elabed",
     "license": "ISC",
     "dependencies": {},
     "devDependencies": {
